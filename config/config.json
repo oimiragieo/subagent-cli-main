@@ -1,0 +1,72 @@
+{
+  "version": "1.0.0",
+  "platform": "auto",
+  "defaultShell": "auto",
+  "agents": {
+    "devops": {
+      "enabled": true,
+      "priority": 1,
+      "description": "DevOps operations, CI/CD, containers, IaC"
+    },
+    "cloud": {
+      "enabled": true,
+      "priority": 2,
+      "description": "Cloud infrastructure (AWS, Azure, GCP)"
+    },
+    "security": {
+      "enabled": true,
+      "priority": 3,
+      "description": "Security audits, pen testing, compliance"
+    },
+    "data": {
+      "enabled": true,
+      "priority": 4,
+      "description": "Data engineering, databases, ETL pipelines"
+    },
+    "system": {
+      "enabled": true,
+      "priority": 5,
+      "description": "System administration, monitoring"
+    },
+    "code": {
+      "enabled": true,
+      "priority": 6,
+      "description": "Software development, testing, builds"
+    }
+  },
+  "tools": {
+    "allowList": ["*"],
+    "denyList": [],
+    "autoDetect": true,
+    "requireConfirmation": false
+  },
+  "execution": {
+    "timeout": 300000,
+    "maxBuffer": 10485760,
+    "retries": 3,
+    "retryDelay": 1000
+  },
+  "logging": {
+    "level": "info",
+    "file": "./logs/subagent-cli.log",
+    "console": true,
+    "includeTimestamp": true
+  },
+  "security": {
+    "sandboxMode": false,
+    "allowSudo": false,
+    "confirmDestructive": true,
+    "auditLog": true
+  },
+  "output": {
+    "format": "text",
+    "color": true,
+    "verbose": false,
+    "maxLineLength": 120
+  },
+  "cache": {
+    "enabled": true,
+    "ttl": 3600,
+    "directory": "./.cache"
+  }
+}

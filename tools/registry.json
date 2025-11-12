@@ -1,0 +1,464 @@
+{
+  "version": "1.0.0",
+  "description": "Comprehensive tool registry for enterprise AI agents",
+  "platforms": ["windows", "macos", "linux", "unix"],
+  "categories": [
+    "devops",
+    "cloud",
+    "security",
+    "data",
+    "system",
+    "code",
+    "networking",
+    "monitoring"
+  ],
+  "tools": [
+    {
+      "name": "docker",
+      "command": "docker",
+      "description": "Container management platform",
+      "category": "devops",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["devops", "cloud", "system"],
+      "versionCommand": "--version",
+      "commonCommands": [
+        "docker build",
+        "docker run",
+        "docker ps",
+        "docker images",
+        "docker compose"
+      ]
+    },
+    {
+      "name": "kubectl",
+      "command": "kubectl",
+      "description": "Kubernetes command-line tool",
+      "category": "devops",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["devops", "cloud"],
+      "versionCommand": "version --client --short",
+      "commonCommands": [
+        "kubectl get pods",
+        "kubectl apply",
+        "kubectl describe",
+        "kubectl logs"
+      ]
+    },
+    {
+      "name": "helm",
+      "command": "helm",
+      "description": "Kubernetes package manager",
+      "category": "devops",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["devops", "cloud"],
+      "versionCommand": "version --short"
+    },
+    {
+      "name": "terraform",
+      "command": "terraform",
+      "description": "Infrastructure as Code tool",
+      "category": "devops",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["devops", "cloud"],
+      "versionCommand": "version",
+      "commonCommands": [
+        "terraform init",
+        "terraform plan",
+        "terraform apply",
+        "terraform destroy"
+      ]
+    },
+    {
+      "name": "ansible",
+      "command": "ansible",
+      "description": "Automation and configuration management",
+      "category": "devops",
+      "platforms": ["macos", "linux"],
+      "agents": ["devops", "system"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "git",
+      "command": "git",
+      "description": "Version control system",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["*"],
+      "versionCommand": "--version",
+      "commonCommands": [
+        "git clone",
+        "git commit",
+        "git push",
+        "git pull",
+        "git status"
+      ]
+    },
+    {
+      "name": "aws",
+      "command": "aws",
+      "description": "AWS Command Line Interface",
+      "category": "cloud",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["cloud", "devops"],
+      "versionCommand": "--version",
+      "commonCommands": [
+        "aws s3 ls",
+        "aws ec2 describe-instances",
+        "aws iam list-users",
+        "aws cloudformation deploy"
+      ]
+    },
+    {
+      "name": "az",
+      "command": "az",
+      "description": "Azure Command Line Interface",
+      "category": "cloud",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["cloud", "devops"],
+      "versionCommand": "version",
+      "commonCommands": [
+        "az login",
+        "az vm list",
+        "az group create",
+        "az storage account list"
+      ]
+    },
+    {
+      "name": "gcloud",
+      "command": "gcloud",
+      "description": "Google Cloud SDK",
+      "category": "cloud",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["cloud", "devops"],
+      "versionCommand": "version",
+      "commonCommands": [
+        "gcloud compute instances list",
+        "gcloud projects list",
+        "gcloud config set"
+      ]
+    },
+    {
+      "name": "nmap",
+      "command": "nmap",
+      "description": "Network security scanner",
+      "category": "security",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["security", "networking"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "openssl",
+      "command": "openssl",
+      "description": "Cryptography and SSL/TLS toolkit",
+      "category": "security",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["security", "devops"],
+      "versionCommand": "version"
+    },
+    {
+      "name": "psql",
+      "command": "psql",
+      "description": "PostgreSQL interactive terminal",
+      "category": "data",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["data", "devops"],
+      "versionCommand": "--version",
+      "commonCommands": [
+        "psql -l",
+        "psql -c 'SELECT version();'"
+      ]
+    },
+    {
+      "name": "mysql",
+      "command": "mysql",
+      "description": "MySQL command-line client",
+      "category": "data",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["data", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "mongosh",
+      "command": "mongosh",
+      "description": "MongoDB Shell",
+      "category": "data",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["data", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "redis-cli",
+      "command": "redis-cli",
+      "description": "Redis command-line interface",
+      "category": "data",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["data", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "npm",
+      "command": "npm",
+      "description": "Node.js package manager",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "devops"],
+      "versionCommand": "--version",
+      "commonCommands": [
+        "npm install",
+        "npm run",
+        "npm test",
+        "npm publish"
+      ]
+    },
+    {
+      "name": "yarn",
+      "command": "yarn",
+      "description": "Fast package manager",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "pip",
+      "command": "pip",
+      "description": "Python package installer",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "data", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "python",
+      "command": "python",
+      "description": "Python interpreter",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "data", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "node",
+      "command": "node",
+      "description": "Node.js runtime",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "dotnet",
+      "command": "dotnet",
+      "description": ".NET SDK",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "maven",
+      "command": "mvn",
+      "description": "Apache Maven build tool",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "gradle",
+      "command": "gradle",
+      "description": "Gradle build tool",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "systemctl",
+      "command": "systemctl",
+      "description": "System and service manager",
+      "category": "system",
+      "platforms": ["linux"],
+      "agents": ["system", "devops"],
+      "versionCommand": "--version",
+      "commonCommands": [
+        "systemctl status",
+        "systemctl start",
+        "systemctl stop",
+        "systemctl restart",
+        "systemctl enable"
+      ]
+    },
+    {
+      "name": "top",
+      "command": "top",
+      "description": "Display system processes",
+      "category": "system",
+      "platforms": ["macos", "linux"],
+      "agents": ["system", "monitoring"],
+      "versionCommand": "-v"
+    },
+    {
+      "name": "htop",
+      "command": "htop",
+      "description": "Interactive process viewer",
+      "category": "system",
+      "platforms": ["macos", "linux"],
+      "agents": ["system", "monitoring"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "curl",
+      "command": "curl",
+      "description": "Transfer data with URLs",
+      "category": "networking",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["*"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "wget",
+      "command": "wget",
+      "description": "Network downloader",
+      "category": "networking",
+      "platforms": ["macos", "linux"],
+      "agents": ["*"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "jq",
+      "command": "jq",
+      "description": "JSON processor",
+      "category": "data",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["*"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "grep",
+      "command": "grep",
+      "description": "Search text using patterns",
+      "category": "system",
+      "platforms": ["macos", "linux"],
+      "agents": ["*"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "awk",
+      "command": "awk",
+      "description": "Pattern scanning and processing",
+      "category": "system",
+      "platforms": ["macos", "linux"],
+      "agents": ["*"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "sed",
+      "command": "sed",
+      "description": "Stream editor",
+      "category": "system",
+      "platforms": ["macos", "linux"],
+      "agents": ["*"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "powershell",
+      "command": "powershell",
+      "description": "Windows PowerShell",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["*"],
+      "versionCommand": "-Command \"$PSVersionTable.PSVersion.ToString()\""
+    },
+    {
+      "name": "pwsh",
+      "command": "pwsh",
+      "description": "PowerShell Core (cross-platform)",
+      "category": "system",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["*"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "jenkins-cli",
+      "command": "jenkins-cli",
+      "description": "Jenkins command-line interface",
+      "category": "devops",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["devops"],
+      "versionCommand": "version"
+    },
+    {
+      "name": "gh",
+      "command": "gh",
+      "description": "GitHub CLI",
+      "category": "code",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["code", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "make",
+      "command": "make",
+      "description": "Build automation tool",
+      "category": "code",
+      "platforms": ["macos", "linux"],
+      "agents": ["code", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "prometheus",
+      "command": "prometheus",
+      "description": "Monitoring system",
+      "category": "monitoring",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["monitoring", "devops"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "netstat",
+      "command": "netstat",
+      "description": "Network statistics",
+      "category": "networking",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["system", "networking", "security"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "ping",
+      "command": "ping",
+      "description": "Network connectivity test",
+      "category": "networking",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["system", "networking"],
+      "versionCommand": "-V"
+    },
+    {
+      "name": "traceroute",
+      "command": "traceroute",
+      "description": "Trace network route",
+      "category": "networking",
+      "platforms": ["macos", "linux"],
+      "agents": ["networking", "system"],
+      "versionCommand": "--version"
+    },
+    {
+      "name": "dig",
+      "command": "dig",
+      "description": "DNS lookup utility",
+      "category": "networking",
+      "platforms": ["macos", "linux"],
+      "agents": ["networking", "system"],
+      "versionCommand": "-v"
+    },
+    {
+      "name": "nslookup",
+      "command": "nslookup",
+      "description": "DNS query tool",
+      "category": "networking",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["networking", "system"],
+      "versionCommand": "-version"
+    }
+  ]
+}
