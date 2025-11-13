@@ -214,6 +214,8 @@ subagent-cli-main/
 
 ## 📚 Documentation
 
+- [Usage Guide](docs/USAGE.md) - Comprehensive usage guide with examples
+- [Windows Reference](docs/WINDOWS-REFERENCE.md) - Complete Windows OS reference guide
 - [Agent Development Guide](docs/agent-development.md)
 - [Tool Integration Guide](docs/tool-integration.md)
 - [Platform Support](docs/platform-support.md)

@@ -459,6 +459,212 @@
       "platforms": ["windows", "macos", "linux"],
       "agents": ["networking", "system"],
       "versionCommand": "-version"
+    },
+    {
+      "name": "sc",
+      "command": "sc",
+      "description": "Windows service control",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "devops"],
+      "versionCommand": "query",
+      "commonCommands": [
+        "sc query",
+        "sc start",
+        "sc stop",
+        "sc config"
+      ]
+    },
+    {
+      "name": "schtasks",
+      "command": "schtasks",
+      "description": "Windows scheduled tasks",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "devops"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "schtasks /query",
+        "schtasks /create",
+        "schtasks /run",
+        "schtasks /delete"
+      ]
+    },
+    {
+      "name": "reg",
+      "command": "reg",
+      "description": "Windows registry operations",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "security"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "reg query",
+        "reg add",
+        "reg delete",
+        "reg export",
+        "reg import"
+      ]
+    },
+    {
+      "name": "wmic",
+      "command": "wmic",
+      "description": "Windows Management Instrumentation",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "devops", "security"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "wmic process",
+        "wmic service",
+        "wmic product",
+        "wmic qfe"
+      ]
+    },
+    {
+      "name": "vssadmin",
+      "command": "vssadmin",
+      "description": "Volume Shadow Service administration",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "security"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "vssadmin list shadows",
+        "vssadmin create shadow"
+      ]
+    },
+    {
+      "name": "tasklist",
+      "command": "tasklist",
+      "description": "Windows process listing",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "security"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "tasklist /svc",
+        "tasklist /v"
+      ]
+    },
+    {
+      "name": "taskkill",
+      "command": "taskkill",
+      "description": "Windows process termination",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "taskkill /PID",
+        "taskkill /IM"
+      ]
+    },
+    {
+      "name": "ipconfig",
+      "command": "ipconfig",
+      "description": "Windows network configuration",
+      "category": "networking",
+      "platforms": ["windows"],
+      "agents": ["system", "networking"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "ipconfig /all",
+        "ipconfig /displaydns",
+        "ipconfig /flushdns"
+      ]
+    },
+    {
+      "name": "netsh",
+      "command": "netsh",
+      "description": "Windows network shell",
+      "category": "networking",
+      "platforms": ["windows"],
+      "agents": ["system", "networking", "security"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "netsh interface ip",
+        "netsh wlan",
+        "netsh advfirewall"
+      ]
+    },
+    {
+      "name": "systeminfo",
+      "command": "systeminfo",
+      "description": "Windows system information",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "systeminfo",
+        "systeminfo /s"
+      ]
+    },
+    {
+      "name": "findstr",
+      "command": "findstr",
+      "description": "Windows string search",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "security"],
+      "versionCommand": "/?",
+      "commonCommands": [
+        "findstr /SI password *.txt"
+      ]
+    },
+    {
+      "name": "Get-EventLog",
+      "command": "Get-EventLog",
+      "description": "PowerShell event log retrieval",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "security"],
+      "versionCommand": "-?",
+      "commonCommands": [
+        "Get-EventLog -LogName System",
+        "Get-EventLog -LogName Security"
+      ]
+    },
+    {
+      "name": "Get-Process",
+      "command": "Get-Process",
+      "description": "PowerShell process management",
+      "category": "system",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["system"],
+      "versionCommand": "-?",
+      "commonCommands": [
+        "Get-Process",
+        "Stop-Process"
+      ]
+    },
+    {
+      "name": "Get-Service",
+      "command": "Get-Service",
+      "description": "PowerShell service management",
+      "category": "system",
+      "platforms": ["windows"],
+      "agents": ["system", "devops"],
+      "versionCommand": "-?",
+      "commonCommands": [
+        "Get-Service",
+        "Start-Service",
+        "Stop-Service"
+      ]
+    },
+    {
+      "name": "Invoke-Command",
+      "command": "Invoke-Command",
+      "description": "PowerShell remote command execution",
+      "category": "system",
+      "platforms": ["windows", "macos", "linux"],
+      "agents": ["system", "devops"],
+      "versionCommand": "-?",
+      "commonCommands": [
+        "Invoke-Command -ComputerName",
+        "Enter-PSSession"
+      ]
     }
   ]
 }

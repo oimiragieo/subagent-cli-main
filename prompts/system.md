@@ -393,6 +393,315 @@ Install-WindowsUpdate -AcceptAll -AutoReboot
 Get-WUHistory
 ```
 
+### Windows Advanced Administration
+
+**IMPORTANT**: See **docs/WINDOWS-REFERENCE.md** for comprehensive Windows OS reference including:
+- Windows 10/11/Server version history
+- NT version mapping
+- Administrative binaries reference
+- Environment variables
+- Registry run keys and important locations
+- System enumeration commands
+- Remote system enumeration
+- Volume Shadow Service (VSS) usage
+- Remote execution techniques
+
+#### Windows Administrative Binaries
+```powershell
+# Essential Windows administrative tools
+lusrmgr.msc                      # Local user and group manager
+services.msc                     # Services control panel
+taskmgr.exe                      # Task manager
+secpol.msc                       # Local security policy editor
+eventvwr.msc                     # Event viewer
+regedit.exe                      # Registry editor
+gpedit.msc                       # Group policy editor
+ncpa.cpl                        # Network connections
+devmgmt.msc                     # Device manager
+diskmgmt.msc                    # Disk management
+perfmon.exe                     # Performance Monitor
+compmgmt.msc                    # Computer Management
+```
+
+#### Windows Environment Variables
+```powershell
+# Common Windows environment variables
+%SYSTEMROOT%                    # Windows folder (C:\Windows)
+%APPDATA%                       # User roaming AppData
+%COMPUTERNAME%                  # Hostname
+%USERPROFILE%                   # User directory (C:\Users\USERNAME)
+%PATH%                          # Executable search paths
+%TEMP% / %TMP%                  # Temporary directories
+%WINDIR%                        # Windows directory
+%ALLUSERSPROFILE%              # ProgramData directory
+
+# PowerShell access
+$env:SYSTEMROOT
+$env:USERPROFILE
+[Environment]::GetEnvironmentVariable("PATH", "Machine")
+```
+
+#### Windows Key Files & Locations
+```powershell
+# Critical Windows locations
+%SYSTEMROOT%\System32\drivers\etc\hosts                    # DNS entries
+%SYSTEMROOT%\System32\config\SAM                          # Password hashes
+%WINDIR%\System32\config\SECURITY                         # Security settings
+%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup  # User startup
+%WINDIR%\Panther\                                         # Unattend files
+%WINDIR%\System32\config\RegBack\SAM                     # SAM backup
+
+# Access with PowerShell
+Get-Content "$env:SYSTEMROOT\System32\drivers\etc\hosts"
+Get-ChildItem "$env:USERPROFILE\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+```
+
+#### Windows Registry Operations
+```powershell
+# Command-line registry operations
+reg query HKLM /f password /t REG_SZ /s              # Search registry
+reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion" /v ProductName
+reg add HKCU\Software\MyApp /v MyValue /t REG_SZ /d "Data"
+reg delete HKCU\Software\MyApp /v MyValue /f
+reg export HKCU\Software\MyApp backup.reg
+reg import backup.reg
+
+# PowerShell registry operations
+Get-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion"
+Set-ItemProperty -Path "HKCU:\Software\MyApp" -Name "Value" -Value "Data"
+New-Item -Path "HKCU:\Software\MyApp"
+Remove-Item -Path "HKCU:\Software\MyApp" -Recurse
+
+# Important registry locations
+HKLM\SYSTEM\CurrentControlSet\Services                   # Services
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run       # Startup programs
+HKCU\Software\Microsoft\Windows\CurrentVersion\Run       # User startup
+HKLM\System\MountedDevices                              # Mounted devices
+HKLM\System\CurrentControlSet\Enum\USB                   # USB devices
+```
+
+#### Windows System Enumeration
+```powershell
+# Comprehensive system information
+ver                                                      # Windows version
+systeminfo                                              # Detailed system info
+wmic qfe list                                           # Installed hotfixes
+wmic cpu get datawidth /format:list                    # 32 vs 64-bit
+wmic logicaldisk get description,name                  # Logical drives
+fsutil fsinfo drives                                    # All drives
+set                                                     # Environment variables
+
+# PowerShell equivalents
+Get-ComputerInfo
+Get-HotFix | Sort-Object InstalledOn -Descending
+Get-CimInstance Win32_OperatingSystem
+Get-PSDrive -PSProvider FileSystem
+
+# OS architecture detection
+dir /a c:\                                              # Look for "Program Files (x86)"
+[Environment]::Is64BitOperatingSystem                   # PowerShell
+
+# Last boot time
+dir /a c:\pagefile.sys                                  # Creation date
+(Get-CimInstance Win32_OperatingSystem).LastBootUpTime  # PowerShell
+```
+
+#### Windows Process & Service Enumeration
+```powershell
+# Detailed process enumeration
+tasklist /svc                                           # Services per process
+tasklist /v                                             # Verbose
+tasklist /FI "USERNAME ne NT AUTHORITY\SYSTEM" /FI "STATUS eq running" /V
+wmic process get name,executablepath,processid,commandline
+
+# PowerShell process enumeration
+Get-Process | Select-Object Name, Id, Path, CPU, WorkingSet
+Get-Process | Where-Object {$_.StartTime -gt (Get-Date).AddHours(-1)}
+Get-WmiObject Win32_Process | Select-Object ProcessId, Name, CommandLine
+
+# Anti-virus detection
+Get-WmiObject -Namespace "root\SecurityCenter2" -Class AntiVirusProduct
+
+# Service enumeration
+sc query state= all                                     # All services
+sc query state= active                                  # Active services
+Get-Service | Select-Object Name, Status, StartType
+Get-Service | Where-Object {$_.Status -eq "Running"}
+
+# Kill processes
+taskkill /F /IM <PROCESS> /T                           # Force kill with children
+taskkill /F /PID <PID>                                 # Kill specific PID
+wmic process where name="<PROCESS>" call terminate
+Stop-Process -Name <PROCESS> -Force
+```
+
+#### Windows Network Enumeration
+```powershell
+# Network configuration
+ipconfig /all                                           # Full network config
+ipconfig /displaydns                                    # DNS cache
+ipconfig /flushdns                                      # Clear DNS cache
+
+# Network connections
+netstat -ano                                            # All connections with PID
+netstat -an | findstr LISTENING                        # Listening ports
+Get-NetTCPConnection | Where-Object {$_.State -eq "Listen"}
+Get-NetTCPConnection | Select-Object LocalAddress, LocalPort, State, OwningProcess
+
+# Routing and ARP
+route print                                             # Routing table
+arp -a                                                  # ARP cache
+Get-NetRoute
+Get-NetNeighbor
+
+# Firewall
+netsh advfirewall show allprofiles                     # Firewall status
+netsh advfirewall firewall show rule name=all
+Get-NetFirewallRule | Where-Object {$_.Enabled -eq 'True'}
+
+# Wireless profiles
+netsh wlan show profiles                               # List profiles
+netsh wlan export profile folder=. key=clear           # Export with keys
+```
+
+#### Windows Remote System Enumeration
+```powershell
+# Remote system information
+systeminfo /S <IP> /U <DOMAIN>\<USER> /P <PASSWORD>
+wmic /node:<IP> computersystem get username            # Logged in user
+wmic /node:<IP> process list brief                     # Remote processes
+
+# Remote registry
+reg query \\<IP>\HKLM\Software\Microsoft\Windows NT\CurrentVersion
+
+# Remote file system
+net view \\<IP> /all                                   # List shares
+dir \\<IP>\c$                                          # Access C: drive
+net use * \\<IP>\<SHARE> /user:<DOMAIN>\<USER> <PASS>
+
+# PowerShell remoting
+Enter-PSSession -ComputerName <COMPUTER>
+Invoke-Command -ComputerName <COMPUTER> -ScriptBlock {Get-Process}
+Get-CimInstance -ClassName Win32_OperatingSystem -ComputerName <COMPUTER>
+```
+
+#### Windows Scheduled Tasks
+```powershell
+# Local scheduled tasks
+schtasks /query /fo LIST /v                            # List all tasks
+schtasks /create /tn "TaskName" /tr "C:\script.bat" /sc daily /st 09:00
+schtasks /run /tn "TaskName"                          # Run task
+schtasks /delete /tn "TaskName" /f                    # Delete task
+
+# PowerShell scheduled tasks
+Get-ScheduledTask
+Get-ScheduledTask | Where-Object {$_.State -eq "Ready"}
+$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File C:\script.ps1"
+$trigger = New-ScheduledTaskTrigger -Daily -At 9am
+Register-ScheduledTask -TaskName "MyTask" -Action $action -Trigger $trigger
+
+# Remote scheduled tasks
+schtasks /create /s <IP> /tn "TaskName" /tr "C:\script.bat" /sc onlogon /ru system
+schtasks /run /s <IP> /tn "TaskName"
+schtasks /delete /s <IP> /tn "TaskName" /f
+```
+
+#### Windows Volume Shadow Service (VSS)
+```powershell
+# List volume shadow copies
+vssadmin list shadows
+
+# Create shadow copy
+wmic shadowcopy call create Volume=c:\
+vssadmin create shadow /for=c:
+
+# Access shadow copy
+vssadmin list shadows                                  # Note the shadow path
+mklink /D C:\restore \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\
+
+# Copy files from shadow
+xcopy C:\restore\Users\<USER>\Documents C:\recovery\ /E /H /Y
+
+# Remove link (NOT del - it deletes actual files!)
+rmdir C:\restore
+```
+
+#### Windows Data Mining
+```powershell
+# File searching
+dir /a /s /b C:\*.pdf                                  # Find all PDFs
+dir /a /s /b C:\*password*                            # Files with "password"
+findstr /SI password *.txt                            # Search file contents
+
+# PowerShell file searching
+Get-ChildItem -Path C:\ -Filter *.pdf -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem -Path C:\ -Include *.txt,*.doc,*.docx -Recurse | Select-String "password"
+Get-ChildItem | Where-Object {$_.Length -gt 100MB}    # Large files
+
+# Recent files
+dir C:\Users\<USER>\AppData\Roaming\Microsoft\Windows\Recent
+
+# Tree filesystem to file
+tree.com /F /A C:\ > c:\temp\filesystem.txt
+dir /s /a C:\ > c:\temp\filesystem.txt
+forfiles /S /C "cmd /c echo @path" /p C:\ > c:\temp\filesystem.txt
+
+# Compress results
+makecab c:\temp\filesystem.txt c:\temp\filesystem.zip
+```
+
+#### Windows Remote Execution Techniques
+
+**SC.EXE Service Manipulation**
+```powershell
+# Modify existing service for remote execution
+sc \\<IP> qc vss                                       # Check service config
+sc \\<IP> config vss binpath= "C:\payload.exe"        # Modify binpath
+sc \\<IP> start vss                                    # Start service
+sc \\<IP> stop vss                                     # Stop service
+sc \\<IP> config vss binpath= "C:\original.exe"       # Restore binpath
+```
+
+**Remote Scheduled Tasks**
+```powershell
+# Create and execute remote scheduled task
+schtasks /Create /F /RU system /SC ONLOGON /TN TaskName /TR "C:\payload.exe" /s <IP>
+schtasks /run /tn TaskName /s <IP>
+schtasks /delete /tn TaskName /f /s <IP>
+```
+
+**PowerShell Remoting**
+```powershell
+# Enable remoting (run on target)
+Enable-PSRemoting -Force
+
+# Execute remotely
+Invoke-Command -ComputerName <IP> -ScriptBlock {whoami}
+Invoke-Command -ComputerName <IP> -FilePath C:\script.ps1
+Enter-PSSession -ComputerName <IP>                     # Interactive session
+
+# With credentials
+$cred = Get-Credential
+Invoke-Command -ComputerName <IP> -Credential $cred -ScriptBlock {Get-Process}
+```
+
+**WMI/CIM Execution**
+```powershell
+# WMI remote execution
+wmic /node:<IP> /user:<USER> /password:<PASS> process call create "cmd.exe /c command"
+Invoke-WmiMethod -ComputerName <IP> -Class Win32_Process -Name Create -ArgumentList "powershell.exe"
+
+# CIM remote execution
+Invoke-CimMethod -ComputerName <IP> -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine="cmd.exe"}
+```
+
+**Security Notes for Remote Execution:**
+- Only use on authorized systems
+- Requires proper administrative credentials
+- Many techniques require local admin or SYSTEM privileges
+- Always restore configurations after testing
+- Document all remote execution activities
+
 ### macOS System Administration
 
 #### Service Management (launchd)
