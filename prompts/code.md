@@ -771,6 +771,124 @@ make
 sudo make install
 ```
 
+### PowerShell and Batch Scripting
+
+**SCRIPTING REFERENCE**: See **docs/POWERSHELL-BATCH-SCRIPTS.md** for comprehensive Windows scripting including:
+
+#### PowerShell Development
+```powershell
+# PowerShell script basics
+# Save as .ps1 file
+
+# Parameter declaration
+param(
+    [Parameter(Mandatory=$true)]
+    [string]$ComputerName,
+
+    [int]$Port = 3389
+)
+
+# Functions
+function Get-SystemInfo {
+    param([string]$Computer)
+    Get-ComputerInfo -ComputerName $Computer
+}
+
+# Error handling
+try {
+    # Code that might fail
+    Get-Process -Name NonExistent -ErrorAction Stop
+}
+catch {
+    Write-Error "Failed: $_"
+}
+finally {
+    # Cleanup code
+}
+
+# Modules
+Import-Module ActiveDirectory
+Get-Module -ListAvailable
+
+# Script execution
+powershell -ExecutionPolicy Bypass -File script.ps1
+pwsh -File script.ps1  # PowerShell Core
+```
+
+#### Batch Scripting
+```batch
+@echo off
+REM Batch script basics
+REM Save as .bat or .cmd file
+
+:: Variables
+set SERVER=192.168.1.1
+set PORT=80
+
+:: Conditional logic
+if exist "C:\file.txt" (
+    echo File exists
+) else (
+    echo File not found
+)
+
+:: Loops
+for /L %%i in (1,1,10) do (
+    echo Processing item %%i
+)
+
+:: Functions (using CALL)
+call :MyFunction argument1 argument2
+goto :EOF
+
+:MyFunction
+echo Function called with %1 and %2
+goto :EOF
+```
+
+#### PowerShell One-Liners for Development
+```powershell
+# Quick HTTP server
+Start-Process python -ArgumentList "-m http.server 8000"
+
+# Download file
+Invoke-WebRequest -Uri "https://example.com/file.zip" -OutFile "file.zip"
+
+# JSON processing
+Get-Content data.json | ConvertFrom-Json | Select-Object name, value
+
+# Test API endpoint
+Invoke-RestMethod -Uri "https://api.example.com/endpoint" -Method GET
+
+# Monitor file changes
+Get-ChildItem -Path . -Recurse | Where-Object {$_.LastWriteTime -gt (Get-Date).AddMinutes(-5)}
+
+# Process JSON API response
+(Invoke-RestMethod -Uri "https://api.github.com/users/octocat").name
+```
+
+#### Automation Examples
+```powershell
+# Build automation
+$projects = Get-ChildItem -Path . -Filter *.csproj -Recurse
+foreach ($project in $projects) {
+    dotnet build $project.FullName
+}
+
+# Test automation
+Get-ChildItem -Path .\tests -Filter *.test.js | ForEach-Object {
+    npm test $_.Name
+}
+
+# Deployment script
+$apps = @("app1", "app2", "app3")
+foreach ($app in $apps) {
+    Write-Host "Deploying $app..." -ForegroundColor Green
+    docker build -t $app .
+    docker push registry.example.com/$app
+}
+```
+
 ## Best Practices
 
 ### 1. Code Quality

@@ -216,6 +216,7 @@ subagent-cli-main/
 
 - [Usage Guide](docs/USAGE.md) - Comprehensive usage guide with examples
 - [Windows Reference](docs/WINDOWS-REFERENCE.md) - Complete Windows OS reference guide
+- [PowerShell & Batch Scripts](docs/POWERSHELL-BATCH-SCRIPTS.md) - PowerShell and Batch scripting reference
 - [Agent Development Guide](docs/agent-development.md)
 - [Tool Integration Guide](docs/tool-integration.md)
 - [Platform Support](docs/platform-support.md)

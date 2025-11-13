@@ -406,6 +406,15 @@ Get-WUHistory
 - Volume Shadow Service (VSS) usage
 - Remote execution techniques
 
+**POWERSHELL & BATCH SCRIPTS**: See **docs/POWERSHELL-BATCH-SCRIPTS.md** for comprehensive scripting reference including:
+- PowerShell basics and core commands
+- PowerShell one-liners (network scanning, credential handling, file operations)
+- Batch script examples (ping sweeps, DNS lookups, file processing)
+- Advanced PowerShell techniques (system enumeration, remote operations)
+- Network operations (port scanning, DNS, web requests)
+- Data manipulation and export
+- Security considerations and best practices
+
 #### Windows Administrative Binaries
 ```powershell
 # Essential Windows administrative tools
