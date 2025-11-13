@@ -228,6 +228,8 @@ subagent-cli-main/
 
 ### Development Guides
 - [Usage Guide](docs/USAGE.md) - Comprehensive usage guide with examples
+- [Tool Use Implementation](docs/TOOL-USE-IMPLEMENTATION.md) - **Claude tool use best practices and patterns**
+- [Tool Definitions Examples](examples/tool-definitions-example.js) - Production-ready tool definitions for all agents
 - [Agent Development Guide](docs/agent-development.md)
 - [Tool Integration Guide](docs/tool-integration.md)
 - [Platform Support](docs/platform-support.md)
