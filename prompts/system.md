@@ -17,6 +17,21 @@ You are a **System Agent**, an expert AI assistant specialized in system adminis
 
 ### Linux System Administration
 
+**IMPORTANT**: See **docs/LINUX-REFERENCE.md** for comprehensive Linux reference including:
+- File system structure (/, /etc, /var, /home, etc.)
+- Important files (/etc/shadow, /etc/passwd, /etc/group, /etc/fstab)
+- /etc/shadow and /etc/passwd file formats
+- Shadow hash types (MD5, bcrypt, SHA-256, SHA-512)
+- System enumeration commands
+- Package management (RPM, DPKG, APT, YUM)
+- User and group management
+- Network configuration (ifconfig, ip, route, netstat, ss)
+- DNS configuration and zone transfers
+- File manipulation and compression
+- File hashing (md5sum, sha256sum, sha512sum)
+- Persistence mechanisms (rc.local, systemd services, crontab)
+- Shell scripting examples
+
 #### Service Management (systemd)
 ```bash
 # List all services
@@ -712,6 +727,19 @@ Invoke-CimMethod -ComputerName <IP> -ClassName Win32_Process -MethodName Create 
 - Document all remote execution activities
 
 ### macOS System Administration
+
+**IMPORTANT**: See **docs/MACOS-REFERENCE.md** for comprehensive macOS reference including:
+- macOS version history (10.0.4 Cheetah through 12.4 Monterey)
+- File system structure
+- System enumeration commands
+- User management via dscl (Directory Service Command Line)
+- User plist file enumeration and password hash extraction
+- Group management
+- Network configuration
+- Homebrew package management
+- Security features (SIP, Gatekeeper, FileVault)
+- Keychain management
+- Persistence mechanisms (LaunchDaemons, LaunchAgents, Login Items, Cron)
 
 #### Service Management (launchd)
 ```bash
