@@ -8,8 +8,11 @@ This framework provides specialized AI agents that can execute complex tasks usi
 
 - **Cross-Platform Support**: Windows (PowerShell, cmd), macOS (bash, zsh), Linux (bash)
 - **Enterprise-Ready**: Built for production environments with security and compliance in mind
-- **Multi-Agent Architecture**: Specialized agents for different domains
+- **Multi-Agent Architecture**: Specialized agents for different domains with parallel execution
 - **Maximum Tool Integration**: Supports 50+ CLI tools out of the box
+- **Claude-Powered**: Leverages Claude's advanced AI capabilities with streaming, tool use, and fine-grained control
+- **Cost Management**: Real-time budget tracking and enforcement with multi-tenant attribution
+- **Security-First**: Command blocklisting, path validation, audit logging, and container isolation
 
 ## 🤖 Available Agents
 
@@ -226,10 +229,14 @@ subagent-cli-main/
 - [Perl Scripts](docs/PERL-SCRIPTS.md) - Perl network and system administration scripts
 - [Regex & ASCII Reference](docs/REGEX-ASCII-REFERENCE.md) - Regular expressions and ASCII table
 
+### Enterprise Implementation
+- **[Implementation README](docs/IMPLEMENTATION-README.md) - 🎯 START HERE - Complete implementation guide**
+- [Claude Enterprise Implementation](docs/CLAUDE-ENTERPRISE-IMPLEMENTATION.md) - Comprehensive architecture and code patterns
+- [Tool Use Implementation](docs/TOOL-USE-IMPLEMENTATION.md) - Claude tool use best practices and patterns
+- [Tool Definitions Examples](examples/tool-definitions-example.js) - Production-ready tool definitions for all agents
+
 ### Development Guides
 - [Usage Guide](docs/USAGE.md) - Comprehensive usage guide with examples
-- [Tool Use Implementation](docs/TOOL-USE-IMPLEMENTATION.md) - **Claude tool use best practices and patterns**
-- [Tool Definitions Examples](examples/tool-definitions-example.js) - Production-ready tool definitions for all agents
 - [Agent Development Guide](docs/agent-development.md)
 - [Tool Integration Guide](docs/tool-integration.md)
 - [Platform Support](docs/platform-support.md)
