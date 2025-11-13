@@ -214,11 +214,20 @@ subagent-cli-main/
 
 ## 📚 Documentation
 
-- [Usage Guide](docs/USAGE.md) - Comprehensive usage guide with examples
+### Platform References
 - [Windows Reference](docs/WINDOWS-REFERENCE.md) - Complete Windows OS reference guide
 - [macOS Reference](docs/MACOS-REFERENCE.md) - Complete macOS administration reference
 - [Linux Reference](docs/LINUX-REFERENCE.md) - Complete Linux system reference
+
+### Scripting and Automation
 - [PowerShell & Batch Scripts](docs/POWERSHELL-BATCH-SCRIPTS.md) - PowerShell and Batch scripting reference
+- [Python Security Tools](docs/PYTHON-SECURITY-TOOLS.md) - Python network and automation scripts
+- [Scapy Reference](docs/SCAPY-REFERENCE.md) - Packet crafting and network analysis with Scapy
+- [Perl Scripts](docs/PERL-SCRIPTS.md) - Perl network and system administration scripts
+- [Regex & ASCII Reference](docs/REGEX-ASCII-REFERENCE.md) - Regular expressions and ASCII table
+
+### Development Guides
+- [Usage Guide](docs/USAGE.md) - Comprehensive usage guide with examples
 - [Agent Development Guide](docs/agent-development.md)
 - [Tool Integration Guide](docs/tool-integration.md)
 - [Platform Support](docs/platform-support.md)

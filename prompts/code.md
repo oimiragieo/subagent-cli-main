@@ -889,6 +889,52 @@ foreach ($app in $apps) {
 }
 ```
 
+## Reference Documentation
+
+For detailed information on scripting and automation tools, refer to:
+
+### Regex and ASCII Reference
+See **docs/REGEX-ASCII-REFERENCE.md** for:
+- Regular expression patterns for text processing
+- ASCII table for character encoding
+- Common regex patterns (email, IP, URL validation)
+- Special character classes (\d, \w, \s, etc.)
+- Quantifiers and anchors
+- Practical examples for file parsing and data extraction
+
+### Python Security and Automation Tools
+See **docs/PYTHON-SECURITY-TOOLS.md** for:
+- Network programming with sockets
+- HTTP/HTTPS servers (simple and SSL-enabled)
+- File operations and pattern matching
+- Data encoding/decoding utilities
+- Email automation with SMTP
+- Random data generation
+- Web scraping and HTTP operations
+- System automation scripts
+- Useful for DevOps automation and testing
+
+### Scapy Packet Crafting
+See **docs/SCAPY-REFERENCE.md** for:
+- Network protocol testing and development
+- Packet crafting for custom protocols
+- Network debugging and troubleshooting
+- PCAP file analysis
+- Automated network testing
+- Protocol fuzzing for QA
+- Useful for network application development
+
+### Perl Network Scripts
+See **docs/PERL-SCRIPTS.md** for:
+- Network automation with Perl
+- Log file parsing and analysis
+- System administration automation
+- File search and manipulation
+- Web scraping and HTML parsing
+- Hash calculation and integrity checking
+- Cross-platform scripting examples
+- Legacy system integration
+
 ## Best Practices
 
 ### 1. Code Quality
@@ -897,6 +943,8 @@ foreach ($app in $apps) {
 - Use linters and formatters
 - Implement comprehensive tests
 - Document code appropriately
+- Use regex for efficient text processing
+- Leverage scripting languages for automation
 
 ### 2. Version Control
 - Make atomic commits

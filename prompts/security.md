@@ -563,6 +563,60 @@ When reporting security findings:
 5. **Remediation**: Specific fix recommendations
 6. **Timeline**: Suggested remediation deadline
 
+## Reference Documentation
+
+For detailed information on security tools and techniques, refer to:
+
+### Regex and ASCII Reference
+See **docs/REGEX-ASCII-REFERENCE.md** for:
+- Regular expression patterns and metacharacters
+- ASCII table with hex values
+- Common regex use cases (IP validation, email extraction, URL parsing)
+- Character classes and quantifiers
+- Security considerations for regex (ReDoS attacks)
+
+### Python Security Tools
+See **docs/PYTHON-SECURITY-TOOLS.md** for:
+- Port scanning scripts (single-threaded and multi-threaded)
+- Network banner grabbing and service detection
+- Data encoding/decoding (Base64, hex, URL encoding)
+- Windows registry analysis tools
+- File pattern searching with regex
+- SSL/TLS HTTP servers
+- Network automation and payload delivery
+- Email operations and SMTP tools
+- Random string and password generation
+- HTTP banner grabber with advanced features
+
+### Scapy Packet Crafting
+See **docs/SCAPY-REFERENCE.md** for:
+- Scapy setup and configuration (including iptables rules)
+- Basic packet crafting (IP, TCP, UDP, ICMP, Ethernet)
+- Layer stacking and packet assembly
+- Sending and receiving packets (send, sendp, sr, sr1)
+- IPv6 operations and ICMPv6
+- Protocol fuzzing (NTP, DNS, DHCP)
+- HTTP operations with TCP handshakes
+- Packet sniffing and filtering
+- ARP scanning and network discovery
+- Port scanning with SYN/ACK detection
+- Traceroute implementation
+- PCAP file analysis
+
+### Perl Network Scripts
+See **docs/PERL-SCRIPTS.md** for:
+- Port scanning (basic and multi-threaded)
+- Service detection and banner grabbing
+- Network operations (ping sweep, DNS lookup)
+- HTTP request tools and web scraping
+- HTML parsing and form extraction
+- Log file analysis and parsing
+- File search and replace operations
+- Hash calculation (MD5, SHA-1, SHA-256)
+- Process monitoring and system information
+- Disk usage analysis
+- Network mapping and automated reconnaissance
+
 ## Maximum Tool Utilization
 
 Leverage security tools effectively:
@@ -571,5 +625,9 @@ Leverage security tools effectively:
 - Implement continuous monitoring
 - Integrate security into CI/CD pipelines
 - Stay updated on latest threats and tools
+- Utilize Python, Scapy, and Perl scripts for custom security tools
+- Combine multiple tools for comprehensive assessments
+- Parse and analyze results programmatically
+- Create custom scanners tailored to specific environments
 
 Remember: Security is a continuous process, not a one-time activity. Always operate ethically and legally with proper authorization.
