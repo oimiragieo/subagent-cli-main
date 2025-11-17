@@ -1,0 +1,110 @@
+{
+  "_comment_version": "Configuration file version",
+  "version": "1.0.0",
+
+  "_comment_platform": "Platform detection: 'auto' (recommended) or 'windows'|'macos'|'linux'",
+  "platform": "auto",
+
+  "_comment_defaultShell": "Default shell: 'auto' (recommended) or 'bash'|'zsh'|'pwsh'|'powershell'|'cmd'",
+  "defaultShell": "auto",
+
+  "_comment_agents": "Agent configuration - Enable/disable specific agents and set execution priority",
+  "agents": {
+    "devops": {
+      "enabled": true,
+      "priority": 1,
+      "description": "DevOps operations, CI/CD, containers, IaC"
+    },
+    "cloud": {
+      "enabled": true,
+      "priority": 2,
+      "description": "Cloud infrastructure (AWS, Azure, GCP)"
+    },
+    "security": {
+      "enabled": true,
+      "priority": 3,
+      "description": "Security audits, pen testing, compliance"
+    },
+    "data": {
+      "enabled": true,
+      "priority": 4,
+      "description": "Data engineering, databases, ETL pipelines"
+    },
+    "system": {
+      "enabled": true,
+      "priority": 5,
+      "description": "System administration, monitoring"
+    },
+    "code": {
+      "enabled": true,
+      "priority": 6,
+      "description": "Software development, testing, builds"
+    }
+  },
+
+  "_comment_tools": "Tool access control - Use '*' to allow all tools",
+  "tools": {
+    "allowList": ["*"],
+    "denyList": [],
+    "autoDetect": true,
+    "requireConfirmation": false
+  },
+
+  "_comment_execution": "Command execution settings",
+  "execution": {
+    "timeout": 300000,
+    "_comment_timeout": "Execution timeout in milliseconds (300000 = 5 minutes)",
+    "maxBuffer": 10485760,
+    "_comment_maxBuffer": "Maximum output buffer size in bytes (10485760 = 10MB)",
+    "retries": 3,
+    "_comment_retries": "Number of retry attempts for failed commands",
+    "retryDelay": 1000,
+    "_comment_retryDelay": "Delay between retries in milliseconds"
+  },
+
+  "_comment_logging": "Logging configuration",
+  "logging": {
+    "level": "info",
+    "_comment_level": "Log level: 'debug'|'info'|'warn'|'error'",
+    "file": "./logs/subagent-cli.log",
+    "_comment_file": "Log file path (directory will be created automatically)",
+    "console": true,
+    "_comment_console": "Enable console logging",
+    "includeTimestamp": true,
+    "_comment_includeTimestamp": "Include timestamps in log entries"
+  },
+
+  "_comment_security": "Security and safety settings",
+  "security": {
+    "sandboxMode": false,
+    "_comment_sandboxMode": "Run commands in isolated sandbox (recommended for untrusted tasks)",
+    "allowSudo": false,
+    "_comment_allowSudo": "Allow sudo/elevated commands (use with caution)",
+    "confirmDestructive": true,
+    "_comment_confirmDestructive": "Require confirmation for potentially destructive commands",
+    "auditLog": true,
+    "_comment_auditLog": "Enable comprehensive audit logging"
+  },
+
+  "_comment_output": "Output formatting settings",
+  "output": {
+    "format": "text",
+    "_comment_format": "Output format: 'text'|'json'|'yaml'",
+    "color": true,
+    "_comment_color": "Enable colored output",
+    "verbose": false,
+    "_comment_verbose": "Enable verbose output",
+    "maxLineLength": 120,
+    "_comment_maxLineLength": "Maximum line length for formatted output"
+  },
+
+  "_comment_cache": "Caching configuration",
+  "cache": {
+    "enabled": true,
+    "_comment_enabled": "Enable result caching",
+    "ttl": 3600,
+    "_comment_ttl": "Cache time-to-live in seconds (3600 = 1 hour)",
+    "directory": "./.cache",
+    "_comment_directory": "Cache directory path (will be created automatically)"
+  }
+}
