@@ -453,6 +453,14 @@ await codeExec.executeInSession(sessionId, "df = pd.read_csv('data.csv')");
 
 ## 🔗 References
 
+### AI Model Selection
+- **[AI Model Review & Selection Guide](AI-MODEL-REVIEW.md)** - Comprehensive comparison of AI tools
+  - Gemini, Claude, Codex, Cursor, Copilot, and Droid comparison
+  - Decision trees and role-based recommendations
+  - Security postures, output formats, and CI/CD integration
+  - Cost and performance benchmarks
+  - When to use which model for your specific tasks
+
 ### Official Documentation
 - [Tool Use Implementation](https://docs.claude.com/en/docs/agents-and-tools/tool-use/implement-tool-use.md)
 - [Fine-Grained Tool Streaming](https://docs.claude.com/en/docs/agents-and-tools/tool-use/fine-grained-tool-streaming.md)
@@ -460,9 +468,9 @@ await codeExec.executeInSession(sessionId, "df = pd.read_csv('data.csv')");
 - [Prompt Engineering](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/)
 
 ### Implementation Guides
-- [Claude Enterprise Implementation](docs/CLAUDE-ENTERPRISE-IMPLEMENTATION.md)
-- [Tool Use Best Practices](docs/TOOL-USE-IMPLEMENTATION.md)
-- [Usage Guide](docs/USAGE.md)
+- [Claude Enterprise Implementation](CLAUDE-ENTERPRISE-IMPLEMENTATION.md)
+- [Tool Use Best Practices](TOOL-USE-IMPLEMENTATION.md)
+- [Usage Guide](USAGE.md)
 
 ## 📝 License
 
