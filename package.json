@@ -12,7 +12,13 @@
     "dev": "ts-node cli.ts",
     "test": "jest",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "verify": "node scripts/verify-installation.js",
+    "setup": "npm install && npm run build && node scripts/verify-installation.js",
+    "info": "node cli.js info",
+    "agents": "node cli.js agents",
+    "tools": "node cli.js tools",
+    "postinstall": "node -e \"console.log('\\\\n✨ Dependencies installed! Next steps:\\\\n  1. Copy .env.example to .env\\\\n  2. Add your ANTHROPIC_API_KEY to .env\\\\n  3. Run: npm run build\\\\n  4. Run: npm run verify\\\\n')\""
   },
   "keywords": [
     "ai",

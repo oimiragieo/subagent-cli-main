@@ -61,12 +61,22 @@ cd subagent-cli-main
 
 # Install dependencies
 npm install
-# or
-pip install -r requirements.txt
 
-# Configure your environment
+# Build TypeScript files
+npm run build
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env and add your ANTHROPIC_API_KEY
+
+# (Optional) Copy and customize configuration
 cp config/config.example.json config/config.json
+
+# Verify installation
+npm run verify
 ```
+
+**Quick Start:** See [QUICKSTART.md](QUICKSTART.md) for a 5-minute setup guide!
 
 ## 🔧 Configuration
 
@@ -97,41 +107,36 @@ Edit `config/config.json` to set your preferences:
 
 ```bash
 # Run a specific agent
-./subagent-cli devops "Deploy application to Kubernetes"
-./subagent-cli security "Scan network for vulnerabilities"
-./subagent-cli cloud "Create AWS S3 bucket with encryption"
+node cli.js devops "Deploy application to Kubernetes"
+node cli.js security "Scan network for vulnerabilities"
+node cli.js cloud "Create AWS S3 bucket with encryption"
 
-# Interactive mode
-./subagent-cli --interactive
+# List available agents
+node cli.js agents
 
-# Specify platform
-./subagent-cli --platform windows devops "Build and deploy"
-./subagent-cli --platform macos system "Check disk usage"
+# List available tools
+node cli.js tools
+
+# Display system information
+node cli.js info
+
+# With global installation (after npm link)
+subagent-cli devops "Build and deploy"
+subagent-cli system "Check disk usage"
 ```
 
-### PowerShell Integration
+### Environment Variables
 
-```powershell
-# Import the module
-Import-Module .\modules\SubagentCLI.psm1
+Required environment variables (set in `.env`):
 
-# Use PowerShell cmdlets
-Invoke-DevOpsAgent -Task "Deploy to production"
-Invoke-CloudAgent -Task "List all EC2 instances" -Provider AWS
-```
+```bash
+# Required
+ANTHROPIC_API_KEY=your-api-key-here
 
-### Python Integration
-
-```python
-from subagent_cli import DevOpsAgent, CloudAgent
-
-# Initialize agent
-devops = DevOpsAgent()
-result = devops.execute("Build Docker image and push to registry")
-
-# Use with context
-with CloudAgent(provider='aws') as agent:
-    agent.execute("Create VPC with public and private subnets")
+# Optional
+LOG_LEVEL=info
+DEFAULT_MODEL=claude-sonnet-4.5
+BUDGET_LIMIT=100
 ```
 
 ## 🛠 Supported Tools
@@ -242,13 +247,10 @@ subagent-cli-main/
 - [Tool Use Implementation](docs/TOOL-USE-IMPLEMENTATION.md) - Claude tool use best practices and patterns
 - [Tool Definitions Examples](examples/tool-definitions-example.js) - Production-ready tool definitions for all agents
 
-### Development Guides
+### Getting Started
+- **[Quickstart Guide](QUICKSTART.md) - 🚀 START HERE - Get running in 5 minutes**
 - [Usage Guide](docs/USAGE.md) - Comprehensive usage guide with examples
-- [Agent Development Guide](docs/agent-development.md)
-- [Tool Integration Guide](docs/tool-integration.md)
-- [Platform Support](docs/platform-support.md)
-- [Best Practices](docs/best-practices.md)
-- [API Reference](docs/api-reference.md)
+- [Contributing Guide](CONTRIBUTING.md) - How to contribute to the project
 
 ## 🤝 Contributing
 
