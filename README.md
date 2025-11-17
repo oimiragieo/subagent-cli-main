@@ -217,6 +217,13 @@ subagent-cli-main/
 
 ## 📚 Documentation
 
+### AI Model Selection & Integration
+- **[AI Model Review & Selection Guide](docs/AI-MODEL-REVIEW.md) - 🧠 AI tool comparison and selection guide**
+  - Compare Gemini, Claude, Codex, Cursor, Copilot, and Droid
+  - Decision trees and role-based recommendations
+  - Security postures, output formats, and CI/CD integration patterns
+  - Cost and performance benchmarks
+
 ### Platform References
 - [Windows Reference](docs/WINDOWS-REFERENCE.md) - Complete Windows OS reference guide
 - [macOS Reference](docs/MACOS-REFERENCE.md) - Complete macOS administration reference
