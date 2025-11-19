@@ -10,7 +10,7 @@
  * - Output size limits
  */
 
-import { exec, spawn } from "child_process";
+import { exec } from "child_process";
 import { promisify } from "util";
 import {
   BashToolConfig,
@@ -112,15 +112,23 @@ export class BashTool {
   /**
    * Get or create a bash session
    */
-  private getSession(sessionId: string): BashSession {
+  private getOrCreateSession(sessionId: string): BashSession {
     let session = this.sessions.get(sessionId);
 
     if (!session) {
+      // Filter out undefined values from process.env
+      const env: { [key: string]: string } = {};
+      for (const [key, value] of Object.entries(process.env)) {
+        if (value !== undefined) {
+          env[key] = value;
+        }
+      }
+
       session = {
         id: sessionId,
         createdAt: new Date(),
         lastUsed: new Date(),
-        environment: { ...process.env },
+        environment: env,
         workingDirectory: process.cwd()
       };
 
@@ -146,7 +154,7 @@ export class BashTool {
       this.validateCommand(command);
 
       // Get session
-      const session = this.getSession(sessionId);
+      const session = this.getOrCreateSession(sessionId);
 
       // Update session state if provided
       if (options.workingDirectory) {
@@ -192,14 +200,6 @@ export class BashTool {
 
       return result;
     } catch (error: any) {
-      const errorResult: BashResult = {
-        stdout: "",
-        stderr: error.stderr || error.message,
-        exitCode: error.code || 1,
-        duration: Date.now() - startTime,
-        sessionId
-      };
-
       // Audit log
       if (this.config.auditLogging) {
         this.auditLog.push({

@@ -23,7 +23,6 @@ export class CodeExecutionTool {
   private client: Anthropic;
   private containerRegistry: Map<string, Container> = new Map();
   private containerLifetimeDays: number;
-  private freeHoursPerDay: number;
 
   constructor(config: {
     apiKey: string;
@@ -38,7 +37,6 @@ export class CodeExecutionTool {
     });
 
     this.containerLifetimeDays = config.containerLifetimeDays || 30;
-    this.freeHoursPerDay = config.freeHoursPerDay || 50;
   }
 
   /**
@@ -71,7 +69,7 @@ export class CodeExecutionTool {
       }
 
       // Execute code via Claude
-      const response = await this.client.messages.create(request);
+      const response: any = await this.client.messages.create(request);
 
       // Extract code execution result
       for (const block of response.content) {
@@ -96,12 +94,12 @@ export class CodeExecutionTool {
 
       // If no tool use found, return text response
       const textBlocks = response.content.filter(
-        block => block.type === "text"
+        (block: any) => block.type === "text"
       );
 
       if (textBlocks.length > 0) {
         return {
-          stdout: textBlocks.map(b => b.text).join("\n"),
+          stdout: textBlocks.map((b: any) => b.text).join("\n"),
           stderr: "",
           returnCode: 0,
           containerId: response.container_id
@@ -277,7 +275,7 @@ export class CodeExecutionTool {
    * Create a reusable code execution session
    */
   async createSession(
-    sessionName: string,
+    _sessionName: string,
     setupCode?: string,
     files?: ContainerFile[]
   ): Promise<string> {

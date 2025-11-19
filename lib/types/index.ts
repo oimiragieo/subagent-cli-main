@@ -3,8 +3,6 @@
  * Shared types and interfaces for all components
  */
 
-import Anthropic from "@anthropic-ai/sdk";
-
 // ============================================================================
 // Message Types
 // ============================================================================
