@@ -10,13 +10,12 @@
  */
 
 import Anthropic from "@anthropic-ai/sdk";
+import type { MessageStreamEvent } from "@anthropic-ai/sdk/resources/messages";
 import {
   Message,
   UserMessage,
-  AssistantMessage,
   StreamingConfig,
   AgentMessage,
-  StreamEvent,
   ToolDefinition,
   ContentBlock,
   ToolResult
@@ -136,7 +135,7 @@ export class StreamingAgent {
             model: message.model,
             content: message.content,
             usage: message.usage,
-            stop_reason: message.stop_reason,
+            stop_reason: message.stop_reason || undefined,
             timestamp: new Date()
           };
         }
@@ -148,14 +147,14 @@ export class StreamingAgent {
         });
 
         // Check if we need to continue the loop
-        if (message.stop_reason === "tool_use") {
+        if (message.stop_reason && (message.stop_reason as any) === "tool_use") {
           // Execute tools and add results to conversation
           const toolResults = await this.executeTools(message.content);
 
           if (toolResults.length > 0) {
             this.conversationHistory.push({
               role: "user",
-              content: toolResults
+              content: toolResults as ContentBlock[]
             });
 
             // Continue the loop to process tool results
@@ -212,13 +211,13 @@ export class StreamingAgent {
   /**
    * Process stream events and convert to AgentMessage
    */
-  private processStreamEvent(event: StreamEvent): AgentMessage | null {
+  private processStreamEvent(event: MessageStreamEvent): AgentMessage | null {
     switch (event.type) {
       case "content_block_start":
-        if (event.content_block?.type === "thinking") {
+        if ((event.content_block as any)?.type === "thinking") {
           return {
             type: "thinking",
-            content: [event.content_block],
+            content: [event.content_block as ContentBlock],
             timestamp: new Date()
           };
         }
@@ -239,10 +238,16 @@ export class StreamingAgent {
 
       case "message_delta":
         if (event.usage) {
+          const usage = event.usage as any;
           return {
             type: "assistant",
             content: [],
-            usage: event.usage,
+            usage: {
+              input_tokens: usage.output_tokens || 0,
+              output_tokens: usage.output_tokens || 0,
+              cache_creation_input_tokens: usage.cache_creation_input_tokens,
+              cache_read_input_tokens: usage.cache_read_input_tokens
+            },
             timestamp: new Date()
           };
         }
@@ -285,7 +290,7 @@ export class StreamingAgent {
    * Execute a single tool
    * Override this method to implement custom tool execution logic
    */
-  protected async executeTool(toolName: string, input: any): Promise<any> {
+  protected async executeTool(toolName: string, _input: any): Promise<any> {
     throw new Error(
       `Tool execution not implemented for: ${toolName}. ` +
       `Override executeTool() method to implement custom tool execution.`
