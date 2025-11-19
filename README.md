@@ -189,13 +189,18 @@ BUDGET_LIMIT=100
 
 ```
 subagent-cli-main/
-├── agents/                  # Agent implementations
-│   ├── devops/
-│   ├── security/
-│   ├── cloud/
-│   ├── data/
-│   ├── system/
-│   └── code/
+├── cli.js                   # CLI entry point (Commander.js)
+├── lib/                     # Core library
+│   ├── agent-base.js        # Base agent class
+│   ├── tool-executor.js     # Command execution engine
+│   ├── platform-detector.js # Platform/shell detection
+│   ├── agents/              # Enterprise specialized agents
+│   ├── security/            # Security layer
+│   ├── tracking/            # Cost & todo tracking
+│   ├── streaming/           # Streaming support
+│   ├── tools/               # Tool implementations (TS)
+│   ├── types/               # TypeScript type definitions
+│   └── config/              # Enterprise configuration
 ├── prompts/                 # System prompts for each agent
 │   └── [agent-name].md
 ├── tools/                   # Tool integrations

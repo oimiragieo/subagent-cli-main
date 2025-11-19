@@ -1,6 +1,7 @@
 # Perl Network and Security Scripts Reference
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Port Scanning](#port-scanning)
 - [Network Operations](#network-operations)
@@ -17,6 +18,7 @@
 Perl (Practical Extraction and Report Language) is a powerful scripting language particularly well-suited for network operations, text processing, and system administration tasks. This reference provides security-focused Perl scripts for authorized testing and administration.
 
 **Use Cases**:
+
 - Network scanning and reconnaissance
 - Log file analysis and parsing
 - System administration automation
@@ -52,6 +54,7 @@ for(my $port=<START_PORT>; $port<<END_PORT>; $port++) {
 ```
 
 **Usage Example**:
+
 ```perl
 use strict;
 use IO::Socket;
@@ -130,6 +133,7 @@ print "Open ports: " . join(", ", sort {$a <=> $b} @open_ports) . "\n";
 ```
 
 **Usage**:
+
 ```bash
 perl port_scanner.pl 192.168.1.1 1 1024 50
 ```
@@ -1138,12 +1142,14 @@ print "Timeout: $timeout\n";
 ### Authorization and Legal Use
 
 **CRITICAL**: Only use these scripts on:
+
 - Systems you own
 - Systems you have explicit written permission to test
 - Authorized penetration testing engagements
 - Educational lab environments
 
 **Prohibited Uses**:
+
 - Unauthorized network scanning
 - Accessing systems without permission
 - Denial of service attacks
@@ -1240,6 +1246,7 @@ print $stdout;
 - ❌ **Unauthorized Use**: Scanning/testing systems without permission, accessing unauthorized networks, malicious activities, data theft
 
 **Always**:
+
 - Obtain written authorization before testing
 - Comply with local laws and regulations
 - Follow responsible disclosure practices

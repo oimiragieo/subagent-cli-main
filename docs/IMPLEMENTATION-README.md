@@ -157,7 +157,7 @@ const config = new ConfigurationManager();
 // Create streaming agent
 const agent = new StreamingAgent(
   process.env.ANTHROPIC_API_KEY!,
-  "You are a helpful AI assistant."
+  "You are a helpful AI assistant.",
 );
 
 // Setup cost tracking
@@ -167,7 +167,7 @@ const costTracker = new CostTracker({
   alertThresholds: config.getAlertThresholds(),
   alertCallback: async (alert) => {
     console.log(CostTracker.formatAlert(alert));
-  }
+  },
 });
 
 // Setup bash tool
@@ -199,13 +199,13 @@ console.log(CostTracker.formatSummary(costTracker.getSummary()));
 import { SubagentOrchestrator } from "./lib/agents/subagent-orchestrator";
 
 const orchestrator = new SubagentOrchestrator({
-  apiKey: process.env.ANTHROPIC_API_KEY!
+  apiKey: process.env.ANTHROPIC_API_KEY!,
 });
 
 // Security audit
 const securityResult = await orchestrator.executeWithSubagent(
   "security-auditor",
-  "Audit this authentication code for vulnerabilities:\n" + code
+  "Audit this authentication code for vulnerabilities:\n" + code,
 );
 
 console.log(securityResult.result);
@@ -214,14 +214,17 @@ console.log(securityResult.result);
 const results = await orchestrator.executeParallel([
   { agent: "security-auditor", task: "Audit authentication code" },
   { agent: "test-engineer", task: "Write unit tests" },
-  { agent: "documentation-writer", task: "Document API" }
+  { agent: "documentation-writer", task: "Document API" },
 ]);
 ```
 
 ### Using Prompt Templates
 
 ```typescript
-import { ChainOfThoughtPrompt, PromptTemplates } from "./lib/prompts/prompt-templates";
+import {
+  ChainOfThoughtPrompt,
+  PromptTemplates,
+} from "./lib/prompts/prompt-templates";
 
 // Security audit with Chain of Thought
 const auditPrompt = ChainOfThoughtPrompt.createSecurityAudit(code);
@@ -302,15 +305,15 @@ const costTracker = new CostTracker({
       inputTokenRate: 0.003 / 1000,
       outputTokenRate: 0.015 / 1000,
       cacheCreationRate: 0.00375 / 1000,
-      cacheReadRate: 0.0003 / 1000
-    }
+      cacheReadRate: 0.0003 / 1000,
+    },
   },
   orgBudget: 1000,
   alertThresholds: [0.5, 0.75, 0.9, 0.95],
   alertCallback: async (alert) => {
     // Send email, Slack notification, etc.
     await sendAlert(alert);
-  }
+  },
 });
 ```
 
@@ -340,6 +343,7 @@ fs.writeFileSync("usage-report.json", JSON.stringify(usageData, null, 2));
 ### Command Blocklist
 
 Default blocked patterns:
+
 - `rm -rf /` - Dangerous deletions
 - `sudo` - Privilege escalation
 - `wget`, `curl http://` - External downloads
@@ -384,13 +388,10 @@ const auditLog = security.getAuditLog();
 // Export for compliance
 const complianceReport = security.exportAuditLog(
   new Date("2024-01-01"),
-  new Date("2024-12-31")
+  new Date("2024-12-31"),
 );
 
-fs.writeFileSync(
-  "audit-log.json",
-  JSON.stringify(complianceReport, null, 2)
-);
+fs.writeFileSync("audit-log.json", JSON.stringify(complianceReport, null, 2));
 ```
 
 ## 🧪 Testing
@@ -417,7 +418,7 @@ const agent = new StreamingAgent(apiKey);
 
 // Fine-grained streaming automatically enabled
 for await (const message of agent.query(messages, {
-  betas: ["fine-grained-tool-streaming-2025-05-14"]
+  betas: ["fine-grained-tool-streaming-2025-05-14"],
 })) {
   // Process messages as they arrive
 }
@@ -454,6 +455,7 @@ await codeExec.executeInSession(sessionId, "df = pd.read_csv('data.csv')");
 ## 🔗 References
 
 ### AI Model Selection
+
 - **[AI Model Review & Selection Guide](AI-MODEL-REVIEW.md)** - Comprehensive comparison of AI tools
   - Gemini, Claude, Codex, Cursor, Copilot, and Droid comparison
   - Decision trees and role-based recommendations
@@ -462,12 +464,14 @@ await codeExec.executeInSession(sessionId, "df = pd.read_csv('data.csv')");
   - When to use which model for your specific tasks
 
 ### Official Documentation
+
 - [Tool Use Implementation](https://docs.claude.com/en/docs/agents-and-tools/tool-use/implement-tool-use.md)
 - [Fine-Grained Tool Streaming](https://docs.claude.com/en/docs/agents-and-tools/tool-use/fine-grained-tool-streaming.md)
 - [Agent SDK](https://docs.claude.com/en/docs/agents-and-tools/agent-sdk/)
 - [Prompt Engineering](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/)
 
 ### Implementation Guides
+
 - [Claude Enterprise Implementation](CLAUDE-ENTERPRISE-IMPLEMENTATION.md)
 - [Tool Use Best Practices](TOOL-USE-IMPLEMENTATION.md)
 - [Usage Guide](USAGE.md)

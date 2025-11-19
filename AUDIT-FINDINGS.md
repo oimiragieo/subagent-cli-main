@@ -11,6 +11,7 @@
 This audit examined the Subagent CLI codebase from a fresh user's perspective, identifying critical gaps between documentation and implementation that would **prevent successful first-time usage**. While the codebase has excellent architectural documentation and advanced features, the **onboarding experience is severely broken**.
 
 **Severity Breakdown:**
+
 - 🔴 **CRITICAL**: 5 issues (will prevent usage)
 - 🟠 **MAJOR**: 7 issues (will cause confusion/frustration)
 - 🟡 **MINOR**: 8 issues (quality of life improvements)
@@ -20,15 +21,18 @@ This audit examined the Subagent CLI codebase from a fresh user's perspective, i
 ## 🔴 CRITICAL ISSUES
 
 ### 1. Missing Environment Configuration Template
+
 **Impact:** Users cannot run the application
 
 **Problem:**
+
 - No `.env.example` file exists
 - README doesn't mention `ANTHROPIC_API_KEY` requirement
 - Code expects `process.env.ANTHROPIC_API_KEY` (lib/agents/subagent-orchestrator.ts:420)
 - Users will get runtime errors without knowing why
 
 **Evidence:**
+
 ```bash
 $ test -f .env.example
 MISSING
@@ -37,6 +41,7 @@ lib/agents/subagent-orchestrator.ts:  apiKey: process.env.ANTHROPIC_API_KEY!
 ```
 
 **User Impact:**
+
 1. Clone repository ✓
 2. Run `npm install` ✓
 3. Run `node cli.js info` ✗ → Crashes with undefined API key error
@@ -44,14 +49,17 @@ lib/agents/subagent-orchestrator.ts:  apiKey: process.env.ANTHROPIC_API_KEY!
 ---
 
 ### 2. Missing Configuration Example File
+
 **Impact:** Installation instructions don't work
 
 **Problem:**
+
 - README.md line 68 instructs: `cp config/config.example.json config/config.json`
 - File `config/config.example.json` does NOT exist
 - Only `config/config.json` exists
 
 **Evidence:**
+
 ```bash
 $ ls -la config/
 total 10
@@ -60,6 +68,7 @@ total 10
 ```
 
 **User Impact:**
+
 - Installation step fails immediately
 - User doesn't know if they should edit config.json directly
 - Risk of committing sensitive configuration to git
@@ -67,14 +76,17 @@ total 10
 ---
 
 ### 3. Python Dependencies Mismatch
+
 **Impact:** Confusing installation instructions
 
 **Problem:**
+
 - README.md line 65 says: `pip install -r requirements.txt`
 - NO `requirements.txt` file exists
 - No Python code in project (it's pure Node.js/TypeScript)
 
 **Evidence:**
+
 ```bash
 $ test -f requirements.txt
 MISSING
@@ -83,16 +95,19 @@ $ grep -r "\.py$" . --include="*.py"
 ```
 
 **User Impact:**
+
 - Users waste time looking for Python dependencies
 - Creates confusion about project tech stack
 
 ---
 
 ### 4. Broken Documentation References
+
 **Impact:** Users cannot find critical documentation
 
 **Problem:**
 README.md references 5 documentation files that don't exist:
+
 - Line 247: `docs/agent-development.md` → MISSING
 - Line 248: `docs/tool-integration.md` → MISSING
 - Line 249: `docs/platform-support.md` → MISSING
@@ -100,6 +115,7 @@ README.md references 5 documentation files that don't exist:
 - Line 251: `docs/api-reference.md` → MISSING
 
 **Evidence:**
+
 ```bash
 $ ls docs/*.md
 AI-MODEL-REVIEW.md
@@ -111,12 +127,14 @@ MACOS-REFERENCE.md
 ```
 
 **User Impact:**
+
 - Broken documentation links frustrate users
 - Appears unmaintained or incomplete
 
 ---
 
 ### 5. Invalid CLI Usage Examples
+
 **Impact:** Copy-paste examples don't work
 
 **Problem:**
@@ -132,11 +150,13 @@ node cli.js devops "Deploy application"
 ```
 
 **Root Cause:**
+
 - No npm link setup in installation instructions
 - No executable binary in bin/ directory
 - package.json has bin field but users aren't told to run `npm link`
 
 **User Impact:**
+
 - Every example fails with "command not found"
 - Users don't know the correct invocation method
 
@@ -145,15 +165,18 @@ node cli.js devops "Deploy application"
 ## 🟠 MAJOR ISSUES
 
 ### 6. No Quickstart Guide
+
 **Impact:** High barrier to entry
 
 **Problem:**
+
 - Users must read 3-4 documents to understand basic usage
 - No single "5-minute setup" guide
 - IMPLEMENTATION-README.md is 13.5 KB - too long for quick start
 
 **Recommendation:**
 Create `QUICKSTART.md` with:
+
 1. Prerequisites check
 2. 5 commands to get running
 3. First agent execution
@@ -162,6 +185,7 @@ Create `QUICKSTART.md` with:
 ---
 
 ### 7. PowerShell Module Claims (Non-existent)
+
 **Impact:** False advertising
 
 **Problem:**
@@ -173,6 +197,7 @@ Invoke-DevOpsAgent -Task "Deploy to production"
 ```
 
 **Reality:**
+
 - No `modules/` directory exists
 - No `.psm1` files in project
 - No PowerShell module implementation
@@ -180,6 +205,7 @@ Invoke-DevOpsAgent -Task "Deploy to production"
 ---
 
 ### 8. Python Integration Claims (Non-existent)
+
 **Impact:** False advertising
 
 **Problem:**
@@ -191,6 +217,7 @@ devops = DevOpsAgent()
 ```
 
 **Reality:**
+
 - No Python package
 - No `__init__.py` files
 - Project is pure Node.js/TypeScript
@@ -198,14 +225,17 @@ devops = DevOpsAgent()
 ---
 
 ### 9. Missing Node Modules on Fresh Clone
+
 **Impact:** Can't run immediately
 
 **Problem:**
+
 - Fresh clone has no `node_modules/`
 - All commands fail with "Cannot find module 'commander'"
 - README doesn't emphasize `npm install` is required
 
 **Evidence:**
+
 ```bash
 $ node cli.js info
 Error: Cannot find module 'commander'
@@ -214,14 +244,17 @@ Error: Cannot find module 'commander'
 ---
 
 ### 10. Incomplete Build Verification
+
 **Impact:** TypeScript errors may exist
 
 **Problem:**
+
 - No verification that `npm run build` succeeds
 - No check if TypeScript compiles without errors
 - Users might have breaking TypeScript errors
 
 **Test Needed:**
+
 ```bash
 npm run build
 # Should verify this succeeds
@@ -230,9 +263,11 @@ npm run build
 ---
 
 ### 11. Agents Directory Confusion
+
 **Impact:** Structural confusion
 
 **Problem:**
+
 - CONTRIBUTING.md line 65 says: `agents/` directory exists
 - README architecture shows `agents/` directory
 - **Reality:** Only `lib/agents/` exists, not root `agents/`
@@ -240,10 +275,12 @@ npm run build
 ---
 
 ### 12. No Interactive Mode Implementation
+
 **Impact:** Advertised feature doesn't exist
 
 **Problem:**
 README line 105 advertises:
+
 ```bash
 ./subagent-cli --interactive
 ```
@@ -255,47 +292,59 @@ README line 105 advertises:
 ## 🟡 MINOR ISSUES
 
 ### 13. Missing tests/ Directory
+
 **Location:** CONTRIBUTING.md references it
 **Impact:** Contributors expect tests directory
 
 ---
 
 ### 14. Missing CHANGELOG.md
+
 **Location:** CONTRIBUTING.md line 319
 **Impact:** Release process documentation incomplete
 
 ---
 
 ### 15. Placeholder Contact Information
+
 **Locations:**
+
 - README.md line 265: `contact@enterprise.com`
 - CONTRIBUTING.md line 329: `security@example.com`
 
 ---
 
 ### 16. Placeholder Git URLs
+
 **Locations:**
+
 - package.json line 54: `https://github.com/enterprise/subagent-cli-main.git`
 - CONTRIBUTING.md: Multiple references to placeholder org
 
 ---
 
 ### 17. No Logging Directory Auto-Creation
+
 **Problem:**
+
 - config.json line 51: `"file": "./logs/subagent-cli.log"`
 - If `logs/` doesn't exist, will it crash?
 
 ---
 
 ### 18. No Cache Directory Auto-Creation
+
 **Problem:**
+
 - config.json line 70: `"directory": "./.cache"`
 - If `.cache/` doesn't exist, will it crash?
 
 ---
 
 ### 19. No Tool Detection Verification
+
 **Problem:**
+
 - README lists 50+ tools
 - No way to verify which are actually available
 - `./cli.js tools` command exists but not documented as verification step
@@ -303,6 +352,7 @@ README line 105 advertises:
 ---
 
 ### 20. Missing .gitattributes
+
 **Impact:** Potential line-ending issues on Windows
 
 ---
@@ -312,6 +362,7 @@ README line 105 advertises:
 ### Scenario: New Developer Clones Repository
 
 **Expected Journey (per README):**
+
 ```bash
 1. git clone <repo>
 2. cd subagent-cli-main
@@ -322,6 +373,7 @@ README line 105 advertises:
 ```
 
 **Actual Working Journey (undocumented):**
+
 ```bash
 1. git clone <repo>
 2. cd subagent-cli-main
@@ -340,6 +392,7 @@ README line 105 advertises:
 ### IMMEDIATE (Fix Today)
 
 1. **Create `.env.example`:**
+
 ```bash
 # Required
 ANTHROPIC_API_KEY=your-api-key-here
@@ -349,18 +402,21 @@ LOG_LEVEL=info
 ```
 
 2. **Create `config/config.example.json`:**
+
 ```bash
 cp config/config.json config/config.example.json
 # Add comments explaining each section
 ```
 
 3. **Create `QUICKSTART.md`:**
+
 - Prerequisites
 - 5-step setup
 - First command verification
 - Troubleshooting
 
 4. **Fix README.md:**
+
 - Remove Python installation line
 - Remove PowerShell module example
 - Remove Python integration example
@@ -369,6 +425,7 @@ cp config/config.json config/config.example.json
 - Remove references to non-existent docs
 
 5. **Add npm postinstall script:**
+
 ```json
 "scripts": {
   "postinstall": "npm run build && npm run verify"
@@ -422,17 +479,20 @@ node cli.js agents
 ## 📈 Metrics
 
 **Documentation Accuracy:**
+
 - Total doc files: 21
 - References checked: 35
 - Broken references: 11 (31.4%)
 - Missing files: 8 (38% of referenced files)
 
 **Installation Success Rate:**
+
 - Steps that work: 2/6 (33.3%)
 - Critical blockers: 5
 - User frustration points: 12
 
 **Code Quality:**
+
 - TypeScript coverage: ~60% (lib/ only)
 - Test coverage: 0% (no tests)
 - Documentation coverage: ~70% (core only)
@@ -456,6 +516,7 @@ Despite the onboarding issues, the codebase has excellent qualities:
 ## 🎓 Lessons for AI Assistants
 
 This codebase demonstrates common gaps between:
+
 1. **Architecture vs. Onboarding**: Great design but poor first-run experience
 2. **Documentation vs. Reality**: Claims vs. actual implementation
 3. **Examples vs. Execution**: Copy-paste examples that don't work

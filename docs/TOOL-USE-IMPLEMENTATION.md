@@ -1,6 +1,7 @@
 # Claude Tool Use Implementation Guide
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Tool Definition Structure](#tool-definition-structure)
 - [Best Practices](#best-practices)
@@ -19,6 +20,7 @@ This guide provides comprehensive patterns for implementing tool use with Claude
 ### Model Recommendations
 
 **Recommended Models**:
+
 - **Claude Sonnet 4.5**: Best for complex tools with ambiguous queries
 - **Claude Opus 4.1**: Superior handling of multiple simultaneous tool invocations
 - **Claude Haiku**: Suitable for straightforward scenarios only
@@ -32,17 +34,20 @@ This guide provides comprehensive patterns for implementing tool use with Claude
 Every tool consists of three essential components:
 
 ### 1. Name
+
 - Format: `^[a-zA-Z0-9_-]{1,64}$`
 - Descriptive and action-oriented
 - Examples: `get_weather`, `search_database`, `analyze_logs`
 
 ### 2. Description
+
 - **Most critical factor** in tool performance
 - Plaintext explanation of tool behavior
 - Minimum 3-4 sentences; complex tools need more
 - Prioritize descriptions over examples
 
 ### 3. Input Schema
+
 - JSON Schema object defining parameters
 - Include type, description, and required fields
 - Use descriptive parameter names
@@ -78,6 +83,7 @@ Every tool consists of three essential components:
 ### 1. Write Comprehensive Descriptions
 
 **Effective descriptions include**:
+
 - ✅ What the tool accomplishes
 - ✅ When it should/shouldn't be used
 - ✅ Parameter meanings and effects
@@ -85,6 +91,7 @@ Every tool consists of three essential components:
 - ✅ Expected output format
 
 **Good Example**:
+
 ```json
 {
   "name": "search_logs",
@@ -93,6 +100,7 @@ Every tool consists of three essential components:
 ```
 
 **Poor Example** (Too Brief):
+
 ```json
 {
   "name": "search_logs",
@@ -103,6 +111,7 @@ Every tool consists of three essential components:
 ### 2. Parameter Descriptions
 
 Every parameter should have:
+
 - Clear purpose explanation
 - Format/type expectations
 - Valid value ranges or examples
@@ -126,12 +135,14 @@ Every parameter should have:
 ### 3. Use Descriptive Names
 
 **Good Names**:
+
 - `calculate_shipping_cost`
 - `validate_user_credentials`
 - `fetch_customer_orders`
 - `analyze_performance_metrics`
 
 **Poor Names**:
+
 - `calc`
 - `check`
 - `get_data`
@@ -140,6 +151,7 @@ Every parameter should have:
 ### 4. Handle Edge Cases
 
 Document behavior for edge cases in descriptions:
+
 - Empty results
 - Invalid inputs
 - Timeout scenarios
@@ -225,62 +237,74 @@ print(final_response.content)
 #### TypeScript with Zod Validation
 
 ```typescript
-import Anthropic from '@anthropic-ai/sdk';
-import { betaZodTool } from '@anthropic-ai/sdk/helpers';
-import { z } from 'zod';
+import Anthropic from "@anthropic-ai/sdk";
+import { betaZodTool } from "@anthropic-ai/sdk/helpers";
+import { z } from "zod";
 
 const client = new Anthropic();
 
 const getWeatherTool = betaZodTool({
-  name: 'get_weather',
-  description: 'Retrieves current weather information for a specified location. Returns temperature, conditions, humidity, and wind speed. Use when users ask about weather.',
+  name: "get_weather",
+  description:
+    "Retrieves current weather information for a specified location. Returns temperature, conditions, humidity, and wind speed. Use when users ask about weather.",
   inputSchema: z.object({
-    location: z.string().describe('City and state/country, e.g. San Francisco, CA'),
-    unit: z.enum(['celsius', 'fahrenheit']).default('fahrenheit').describe('Temperature unit')
+    location: z
+      .string()
+      .describe("City and state/country, e.g. San Francisco, CA"),
+    unit: z
+      .enum(["celsius", "fahrenheit"])
+      .default("fahrenheit")
+      .describe("Temperature unit"),
   }),
   run: async (input) => {
     // Simulated weather API call
     const weather = {
       location: input.location,
-      temperature: input.unit === 'fahrenheit' ? '72°F' : '22°C',
-      condition: 'Sunny',
-      humidity: '45%'
+      temperature: input.unit === "fahrenheit" ? "72°F" : "22°C",
+      condition: "Sunny",
+      humidity: "45%",
     };
     return JSON.stringify(weather);
-  }
+  },
 });
 
 const searchDatabaseTool = betaZodTool({
-  name: 'search_database',
-  description: 'Search product database for items. Returns up to max_results products matching query.',
+  name: "search_database",
+  description:
+    "Search product database for items. Returns up to max_results products matching query.",
   inputSchema: z.object({
-    query: z.string().describe('Search terms for products'),
-    max_results: z.number().min(1).max(100).default(10).describe('Maximum results (1-100)')
+    query: z.string().describe("Search terms for products"),
+    max_results: z
+      .number()
+      .min(1)
+      .max(100)
+      .default(10)
+      .describe("Maximum results (1-100)"),
   }),
   run: async (input) => {
     // Simulated database search
-    const results = [
-      { id: 1, name: 'Widget', price: 19.99 }
-    ];
+    const results = [{ id: 1, name: "Widget", price: 19.99 }];
     return JSON.stringify(results.slice(0, input.max_results));
-  }
+  },
 });
 
 // Execute with tool runner
 const runner = client.beta.messages.tool_runner({
-  model: 'claude-sonnet-4-5',
+  model: "claude-sonnet-4-5",
   max_tokens: 2048,
   tools: [getWeatherTool, searchDatabaseTool],
-  messages: [{ role: 'user', content: 'What is the weather and find widgets?' }]
+  messages: [
+    { role: "user", content: "What is the weather and find widgets?" },
+  ],
 });
 
 // Process results
 for await (const messageStream of runner) {
   for await (const event of messageStream) {
-    console.log('event:', event);
+    console.log("event:", event);
   }
   const finalMessage = await messageStream.finalMessage();
-  console.log('response:', finalMessage.content);
+  console.log("response:", finalMessage.content);
 }
 ```
 
@@ -465,6 +489,7 @@ messages.append({"role": "user", "content": tool_results})
 ### Common Parallel Tool Issues
 
 **Problem**: Tool results in separate messages
+
 ```python
 # ❌ INCORRECT - Multiple user messages
 messages.append({"role": "user", "content": [tool_result_1]})
@@ -472,12 +497,14 @@ messages.append({"role": "user", "content": [tool_result_2]})
 ```
 
 **Solution**: All results in single message
+
 ```python
 # ✅ CORRECT - Single user message with all results
 messages.append({"role": "user", "content": [tool_result_1, tool_result_2]})
 ```
 
 **Problem**: Text before tool results
+
 ```python
 # ❌ INCORRECT - Text before tool_result blocks
 messages.append({
@@ -490,6 +517,7 @@ messages.append({
 ```
 
 **Solution**: Tool results first, text after
+
 ```python
 # ✅ CORRECT - tool_result blocks before text
 messages.append({
@@ -942,17 +970,19 @@ class AgentBase {
   registerTool(tool) {
     // Validate tool definition
     if (!tool.name || !tool.description || !tool.input_schema) {
-      throw new Error('Tool must have name, description, and input_schema');
+      throw new Error("Tool must have name, description, and input_schema");
     }
 
     // Validate name format
     if (!/^[a-zA-Z0-9_-]{1,64}$/.test(tool.name)) {
-      throw new Error('Tool name must match ^[a-zA-Z0-9_-]{1,64}$');
+      throw new Error("Tool name must match ^[a-zA-Z0-9_-]{1,64}$");
     }
 
     // Warn if description is too short
     if (tool.description.length < 100) {
-      console.warn(`Tool ${tool.name} has short description (${tool.description.length} chars). Recommend 3-4 sentences minimum.`);
+      console.warn(
+        `Tool ${tool.name} has short description (${tool.description.length} chars). Recommend 3-4 sentences minimum.`,
+      );
     }
 
     this.tools.push(tool);
@@ -964,8 +994,8 @@ class AgentBase {
   async execute(userMessage, options = {}) {
     // Add user message to history
     this.conversationHistory.push({
-      role: 'user',
-      content: userMessage
+      role: "user",
+      content: userMessage,
     });
 
     // Tool execution loop
@@ -977,20 +1007,20 @@ class AgentBase {
 
       // Create message with tools
       const response = await this.claude.messages.create({
-        model: options.model || 'claude-sonnet-4-5',
+        model: options.model || "claude-sonnet-4-5",
         max_tokens: options.maxTokens || 2048,
         system: this.getSystemPrompt(),
         tools: this.tools,
-        tool_choice: options.toolChoice || { type: 'auto' },
-        messages: this.conversationHistory
+        tool_choice: options.toolChoice || { type: "auto" },
+        messages: this.conversationHistory,
       });
 
       // Handle response
-      if (response.stop_reason === 'tool_use') {
+      if (response.stop_reason === "tool_use") {
         // Add assistant message
         this.conversationHistory.push({
-          role: 'assistant',
-          content: response.content
+          role: "assistant",
+          content: response.content,
         });
 
         // Execute all tools in parallel
@@ -998,8 +1028,8 @@ class AgentBase {
 
         // Add results in single user message
         this.conversationHistory.push({
-          role: 'user',
-          content: toolResults
+          role: "user",
+          content: toolResults,
         });
 
         // Continue loop
@@ -1010,7 +1040,7 @@ class AgentBase {
           content: response.content,
           stop_reason: response.stop_reason,
           usage: response.usage,
-          iterations: iteration
+          iterations: iteration,
         };
       }
     }
@@ -1022,7 +1052,9 @@ class AgentBase {
    * Execute multiple tools in parallel
    */
   async executeToolsParallel(contentBlocks) {
-    const toolUseBlocks = contentBlocks.filter(block => block.type === 'tool_use');
+    const toolUseBlocks = contentBlocks.filter(
+      (block) => block.type === "tool_use",
+    );
 
     // Execute all tools concurrently
     const results = await Promise.all(
@@ -1030,19 +1062,19 @@ class AgentBase {
         try {
           const result = await this.executeTool(block.name, block.input);
           return {
-            type: 'tool_result',
+            type: "tool_result",
             tool_use_id: block.id,
-            content: JSON.stringify(result)
+            content: JSON.stringify(result),
           };
         } catch (error) {
           return {
-            type: 'tool_result',
+            type: "tool_result",
             tool_use_id: block.id,
             content: error.message,
-            is_error: true
+            is_error: true,
           };
         }
-      })
+      }),
     );
 
     return results;
@@ -1059,7 +1091,7 @@ class AgentBase {
    * Get system prompt with parallel tool instruction
    */
   getSystemPrompt() {
-    return `${this.config.systemPrompt || ''}
+    return `${this.config.systemPrompt || ""}
 
 For maximum efficiency, whenever performing multiple independent operations, invoke all relevant tools simultaneously rather than sequentially. If a user request requires multiple tool calls that don't depend on each other's results, make all calls in parallel within a single assistant message.`;
   }

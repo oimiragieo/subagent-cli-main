@@ -1,6 +1,7 @@
 # Subagent CLI - Usage Guide
 
 ## Table of Contents
+
 1. [Getting Started](#getting-started)
 2. [Agent Overview](#agent-overview)
 3. [Command Reference](#command-reference)
@@ -46,9 +47,11 @@ npm link
 ## Agent Overview
 
 ### DevOps Agent
+
 **Purpose**: CI/CD, containerization, infrastructure automation
 
 **Common Use Cases**:
+
 - Building and deploying Docker containers
 - Kubernetes cluster management
 - Infrastructure as Code (Terraform, Ansible)
@@ -56,14 +59,17 @@ npm link
 - Monitoring and logging
 
 **Example**:
+
 ```bash
 ./cli.js devops "Deploy application to Kubernetes with 3 replicas"
 ```
 
 ### Cloud Agent
+
 **Purpose**: Multi-cloud infrastructure management
 
 **Common Use Cases**:
+
 - AWS resource management
 - Azure infrastructure
 - GCP operations
@@ -71,14 +77,17 @@ npm link
 - Cost optimization
 
 **Example**:
+
 ```bash
 ./cli.js cloud "List all EC2 instances in production VPC"
 ```
 
 ### Security Agent
+
 **Purpose**: Security auditing, compliance, penetration testing
 
 **Common Use Cases**:
+
 - Vulnerability scanning
 - Security audits
 - Compliance checks
@@ -86,14 +95,17 @@ npm link
 - Access control management
 
 **Example**:
+
 ```bash
 ./cli.js security "Scan network for open ports and vulnerabilities"
 ```
 
 ### Data Agent
+
 **Purpose**: Data engineering, database management, ETL
 
 **Common Use Cases**:
+
 - Database operations
 - Data pipeline creation
 - ETL processes
@@ -101,14 +113,17 @@ npm link
 - Analytics queries
 
 **Example**:
+
 ```bash
 ./cli.js data "Export PostgreSQL database to CSV files"
 ```
 
 ### System Agent
+
 **Purpose**: System administration and monitoring
 
 **Common Use Cases**:
+
 - Service management
 - Performance monitoring
 - Log analysis
@@ -116,14 +131,17 @@ npm link
 - System maintenance
 
 **Example**:
+
 ```bash
 ./cli.js system "Check system performance and disk usage"
 ```
 
 ### Code Agent
+
 **Purpose**: Software development, testing, build automation
 
 **Common Use Cases**:
+
 - Dependency management
 - Running tests
 - Code analysis
@@ -131,6 +149,7 @@ npm link
 - Git operations
 
 **Example**:
+
 ```bash
 ./cli.js code "Run all tests and generate coverage report"
 ```
@@ -140,26 +159,34 @@ npm link
 ### Global Commands
 
 #### info
+
 Display system and platform information
+
 ```bash
 ./cli.js info
 ```
 
 #### agents
+
 List all available agents
+
 ```bash
 ./cli.js agents
 ```
 
 #### tools
+
 List available CLI tools
+
 ```bash
 ./cli.js tools                    # All tools
 ./cli.js tools --category devops  # Specific category
 ```
 
 #### interactive
+
 Start interactive mode
+
 ```bash
 ./cli.js interactive
 # or
@@ -175,6 +202,7 @@ Each agent can be invoked with a task description:
 ```
 
 **Options**:
+
 - `-p, --platform <platform>`: Override platform detection
 - `-s, --shell <shell>`: Override default shell
 - `-v, --verbose`: Enable verbose output
@@ -258,8 +286,8 @@ Edit `config/config.json` to customize:
   "platform": "auto",
   "defaultShell": "auto",
   "agents": {
-    "devops": {"enabled": true},
-    "cloud": {"enabled": true}
+    "devops": { "enabled": true },
+    "cloud": { "enabled": true }
   },
   "tools": {
     "allowList": ["*"],
@@ -400,18 +428,21 @@ fi
 ### Common Issues
 
 **Issue**: Agent not found
+
 ```bash
 # Solution: Check if agent is enabled in config
 ./cli.js agents
 ```
 
 **Issue**: Permission denied
+
 ```bash
 # Solution: Check file permissions or run with appropriate privileges
 chmod +x cli.js
 ```
 
 **Issue**: Tool not available
+
 ```bash
 # Solution: Check available tools and install if needed
 ./cli.js tools
@@ -420,6 +451,7 @@ chmod +x cli.js
 ### Verbose Mode
 
 Enable verbose output for debugging:
+
 ```bash
 ./cli.js --verbose devops "Task description"
 ```
@@ -427,6 +459,7 @@ Enable verbose output for debugging:
 ### Logs
 
 Check log files:
+
 ```bash
 cat logs/subagent-cli.log
 ```
@@ -434,6 +467,7 @@ cat logs/subagent-cli.log
 ## Support
 
 For issues, questions, or contributions:
+
 - Documentation: `docs/`
 - Examples: `examples/`
 - Issue Tracker: GitHub Issues

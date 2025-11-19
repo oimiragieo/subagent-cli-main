@@ -1,6 +1,7 @@
 # Scapy Packet Crafting and Network Analysis Reference
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Setup and Configuration](#setup-and-configuration)
 - [Basic Scapy Commands](#basic-scapy-commands)
@@ -21,6 +22,7 @@
 Scapy is a powerful Python-based interactive packet manipulation program and library. It can forge or decode packets, send them on the wire, capture them, match requests and replies, and much more.
 
 **Use Cases**:
+
 - Network scanning and discovery
 - Packet crafting and analysis
 - Protocol fuzzing and testing
@@ -73,14 +75,14 @@ from scapy.all import *
 
 ### Exploration Commands
 
-| Command | Description |
-|---------|-------------|
-| `ls()` | List all available protocols |
-| `ls(TCP)` | Show fields of a specific protocol (e.g., TCP) |
-| `lsc()` | List all Scapy functions |
-| `conf` | Show/set Scapy configuration |
-| `conf.iface` | Show/set default network interface |
-| `conf.verb` | Set verbosity level (0=silent, 2=default) |
+| Command      | Description                                    |
+| ------------ | ---------------------------------------------- |
+| `ls()`       | List all available protocols                   |
+| `ls(TCP)`    | Show fields of a specific protocol (e.g., TCP) |
+| `lsc()`      | List all Scapy functions                       |
+| `conf`       | Show/set Scapy configuration                   |
+| `conf.iface` | Show/set default network interface             |
+| `conf.verb`  | Set verbosity level (0=silent, 2=default)      |
 
 ### Examples
 
@@ -1026,6 +1028,7 @@ def detect_vlan_hopping(iface="eth0", count=100):
 - ❌ **Legal Consequences**: Unauthorized use may violate computer fraud and abuse laws
 
 **Always**:
+
 - Obtain written authorization before testing
 - Comply with all applicable laws and regulations
 - Document all testing activities

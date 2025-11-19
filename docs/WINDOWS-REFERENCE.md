@@ -1,6 +1,7 @@
 # Windows Operating System Reference Guide
 
 ## Table of Contents
+
 1. [Windows Versions](#windows-versions)
 2. [Administrative Binaries](#administrative-binaries)
 3. [Environment Variables](#environment-variables)
@@ -18,80 +19,81 @@
 
 ### Windows 10 & 11 Versions
 
-| ID | VERSION | DATE RELEASED |
-|---|---|---|
-| 1511 | Windows 10 – Threshold 2 | 2015-11-12 |
-| 1607 | Windows 10 – Redstone 1 | 2016-08-02 |
-| 1703 | Windows 10 – Redstone 2 | 2017-04-05 |
-| 1709 | Windows 10 – Redstone 3 | 2017-10-17 |
-| 1803 | Windows 10 – Redstone 4 | 2018-04-30 |
-| 1809 | Windows 10 – Redstone 5 | 2018-11-13 |
-| 1903 | Windows 10 – 19H1 | 2019-05-21 |
-| 1909 | Windows 10 – Vanadium | 2019-11-12 |
-| 2004 | Windows 10 - Vibranium | 2020-05-27 |
-| 20H2 | Windows 10 - Vibranium | 2020-10-20 |
-| 21H1 | Windows 10 - Vibranium | 2021-05-18 |
-| 21H2 | Windows 10 - Vibranium | 2021-11-16 |
-| 21H2 | Windows 11 - Sun Valley | 2021-10-05 |
+| ID   | VERSION                  | DATE RELEASED |
+| ---- | ------------------------ | ------------- |
+| 1511 | Windows 10 – Threshold 2 | 2015-11-12    |
+| 1607 | Windows 10 – Redstone 1  | 2016-08-02    |
+| 1703 | Windows 10 – Redstone 2  | 2017-04-05    |
+| 1709 | Windows 10 – Redstone 3  | 2017-10-17    |
+| 1803 | Windows 10 – Redstone 4  | 2018-04-30    |
+| 1809 | Windows 10 – Redstone 5  | 2018-11-13    |
+| 1903 | Windows 10 – 19H1        | 2019-05-21    |
+| 1909 | Windows 10 – Vanadium    | 2019-11-12    |
+| 2004 | Windows 10 - Vibranium   | 2020-05-27    |
+| 20H2 | Windows 10 - Vibranium   | 2020-10-20    |
+| 21H1 | Windows 10 - Vibranium   | 2021-05-18    |
+| 21H2 | Windows 10 - Vibranium   | 2021-11-16    |
+| 21H2 | Windows 11 - Sun Valley  | 2021-10-05    |
 
 **Note**: Windows 10 versions include Home, Pro, Education, Enterprise, Pro for Workstations, Pro Education, Windows 10 S, and Windows 10 Enterprise LTSC
 
 ### Windows Server Versions
 
-| ID | OS | DATE RELEASED |
-|---|---|---|
-| 1607 | Windows Server 2016 | 2016-10-12 |
-| 1709 | Windows Server | 2017-10-17 |
-| 1803 | Windows Server | 2018-04-10 |
-| 1809 | Windows Server 2019 | 2018-11-13 |
-| 1903 | Windows Server | 2019-11-12 |
-| 1909 | Windows Server | 2019-11-12 |
-| 2004 | Windows Server | 2020-06-26 |
-| 20H2 | Windows Server | 2020-10-20 |
-| 21H2 | Windows Server 2022 | 2021-08-18 |
+| ID   | OS                  | DATE RELEASED |
+| ---- | ------------------- | ------------- |
+| 1607 | Windows Server 2016 | 2016-10-12    |
+| 1709 | Windows Server      | 2017-10-17    |
+| 1803 | Windows Server      | 2018-04-10    |
+| 1809 | Windows Server 2019 | 2018-11-13    |
+| 1903 | Windows Server      | 2019-11-12    |
+| 1909 | Windows Server      | 2019-11-12    |
+| 2004 | Windows Server      | 2020-06-26    |
+| 20H2 | Windows Server      | 2020-10-20    |
+| 21H2 | Windows Server 2022 | 2021-08-18    |
 
 **Note**: Windows servers include Windows Server Essentials, Windows Server Standard, and Windows Server Datacenter.
 
 ### Windows "NT" Versions
 
-| ID | VERSION |
-|---|---|
-| NT 3.1 | Windows NT 3.1 (All) |
-| NT 3.5 | Windows NT 3.5 (All) |
-| NT 3.51 | Windows NT 3.51 (All) |
-| NT 4.0 | Windows NT 4.0 (All) |
-| NT 5.0 | Windows 2000 (All) |
-| NT 5.1 | Windows XP (Home, Pro, MC, Tablet PC, Starter, Embedded) |
-| NT 5.2 | Windows XP (64-bit, Pro 64-bit) |
-| NT 5.2 | Windows Server 2003 & R2 (Standard, Enterprise) |
-| NT 5.2 | Windows Home Server |
-| NT 6.0 | Windows Vista (Starter, Home, Basic, Home Premium, Business, Enterprise, Ultimate) |
-| NT 6.0 | Windows Server 2008 (Foundation, Standard, Enterprise) |
-| NT 6.1 | Windows 7 (Starter, Home, Pro, Enterprise, Ultimate) |
-| NT 6.1 | Windows Server 2008 R2 (Foundation, Standard, Enterprise) |
-| NT 6.2 | Windows 8 (x86/64, Pro, Enterprise, Windows RT (ARM)) |
-| NT 6.2 | Windows Phone 8 |
-| NT 6.2 | Windows Server 2012 (Foundation, Essentials, Standard) |
-| NT 6.3 | Windows 8.1 (Pro, Enterprise) |
-| NT 10 | Windows 10 version 1507 |
+| ID      | VERSION                                                                            |
+| ------- | ---------------------------------------------------------------------------------- |
+| NT 3.1  | Windows NT 3.1 (All)                                                               |
+| NT 3.5  | Windows NT 3.5 (All)                                                               |
+| NT 3.51 | Windows NT 3.51 (All)                                                              |
+| NT 4.0  | Windows NT 4.0 (All)                                                               |
+| NT 5.0  | Windows 2000 (All)                                                                 |
+| NT 5.1  | Windows XP (Home, Pro, MC, Tablet PC, Starter, Embedded)                           |
+| NT 5.2  | Windows XP (64-bit, Pro 64-bit)                                                    |
+| NT 5.2  | Windows Server 2003 & R2 (Standard, Enterprise)                                    |
+| NT 5.2  | Windows Home Server                                                                |
+| NT 6.0  | Windows Vista (Starter, Home, Basic, Home Premium, Business, Enterprise, Ultimate) |
+| NT 6.0  | Windows Server 2008 (Foundation, Standard, Enterprise)                             |
+| NT 6.1  | Windows 7 (Starter, Home, Pro, Enterprise, Ultimate)                               |
+| NT 6.1  | Windows Server 2008 R2 (Foundation, Standard, Enterprise)                          |
+| NT 6.2  | Windows 8 (x86/64, Pro, Enterprise, Windows RT (ARM))                              |
+| NT 6.2  | Windows Phone 8                                                                    |
+| NT 6.2  | Windows Server 2012 (Foundation, Essentials, Standard)                             |
+| NT 6.3  | Windows 8.1 (Pro, Enterprise)                                                      |
+| NT 10   | Windows 10 version 1507                                                            |
 
 ## Administrative Binaries
 
-| Binary | Description |
-|---|---|
-| `lusrmgr.msc` | Local user and group manager |
-| `services.msc` | Services control panel |
-| `taskmgr.exe` | Task manager |
-| `secpol.msc` | Local security policy editor |
-| `eventvwr.msc` | Event viewer |
-| `regedit.exe` | Registry editor |
-| `gpedit.msc` | Group policy editor |
-| `control.exe` | Control panel |
-| `ncpa.cpl` | Network connections manager |
-| `devmgmt.msc` | Device manager editor |
-| `diskmgmt.msc` | Disk manager editor |
+| Binary         | Description                  |
+| -------------- | ---------------------------- |
+| `lusrmgr.msc`  | Local user and group manager |
+| `services.msc` | Services control panel       |
+| `taskmgr.exe`  | Task manager                 |
+| `secpol.msc`   | Local security policy editor |
+| `eventvwr.msc` | Event viewer                 |
+| `regedit.exe`  | Registry editor              |
+| `gpedit.msc`   | Group policy editor          |
+| `control.exe`  | Control panel                |
+| `ncpa.cpl`     | Network connections manager  |
+| `devmgmt.msc`  | Device manager editor        |
+| `diskmgmt.msc` | Disk manager editor          |
 
 ### Usage Examples
+
 ```powershell
 # Open local user manager
 lusrmgr.msc
@@ -117,22 +119,23 @@ diskmgmt.msc
 
 ## Environment Variables
 
-| Variable | Description |
-|---|---|
-| `%SYSTEMROOT%` | Points to Windows folder (Commonly: C:\Windows) |
-| `%APPDATA%` | Points to user roaming directory (Commonly: C:\Users\<USERNAME>\AppData\Roaming) |
-| `%COMPUTERNAME%` | The computer hostname |
-| `%HOMEDRIVE%` | Points to default OS drive (Commonly: C:\) |
-| `%HOMEPATH%` | Points to user directory (Commonly: C:\Users\<USERNAME>) |
-| `%PATH%` | When a command is run without a full path, the OS searches all file paths in PATH |
-| `%PATHEXT%` | When a command is run without an extension, the OS searches for file matches with these extensions |
-| `%SYSTEMDRIVE%` | Points to default OS drive (Commonly: C:\) |
-| `%TMP%` / `%TEMP%` | Points to user temp folders (Commonly: C:\Users\<USERNAME>\AppData\Local\Temp) |
-| `%USERPROFILE%` | Points to user directories (Commonly: C:\Users\<USERNAME>) |
-| `%WINDIR%` | Points to Windows directory (Commonly: C:\Windows) |
-| `%ALLUSERSPROFILE%` | Points to ProgramData (Commonly: C:\ProgramData on Windows 10+) |
+| Variable            | Description                                                                                        |
+| ------------------- | -------------------------------------------------------------------------------------------------- |
+| `%SYSTEMROOT%`      | Points to Windows folder (Commonly: C:\Windows)                                                    |
+| `%APPDATA%`         | Points to user roaming directory (Commonly: C:\Users\<USERNAME>\AppData\Roaming)                   |
+| `%COMPUTERNAME%`    | The computer hostname                                                                              |
+| `%HOMEDRIVE%`       | Points to default OS drive (Commonly: C:\)                                                         |
+| `%HOMEPATH%`        | Points to user directory (Commonly: C:\Users\<USERNAME>)                                           |
+| `%PATH%`            | When a command is run without a full path, the OS searches all file paths in PATH                  |
+| `%PATHEXT%`         | When a command is run without an extension, the OS searches for file matches with these extensions |
+| `%SYSTEMDRIVE%`     | Points to default OS drive (Commonly: C:\)                                                         |
+| `%TMP%` / `%TEMP%`  | Points to user temp folders (Commonly: C:\Users\<USERNAME>\AppData\Local\Temp)                     |
+| `%USERPROFILE%`     | Points to user directories (Commonly: C:\Users\<USERNAME>)                                         |
+| `%WINDIR%`          | Points to Windows directory (Commonly: C:\Windows)                                                 |
+| `%ALLUSERSPROFILE%` | Points to ProgramData (Commonly: C:\ProgramData on Windows 10+)                                    |
 
 ### PowerShell Examples
+
 ```powershell
 # Display all environment variables
 Get-ChildItem Env:
@@ -153,22 +156,22 @@ $env:MY_VAR = "value"
 
 ## Key Files & Locations
 
-| Path | Description |
-|---|---|
-| `%SYSTEMROOT%\System32\drivers\etc\hosts` | DNS entries |
-| `%SYSTEMROOT%\System32\drivers\etc\networks` | Network settings |
-| `%SYSTEMROOT%\System32\config\SAM` | User & password hashes |
-| `%SYSTEMROOT%\repair\SAM` | Backup copy of SAM (WinXP) |
-| `%SYSTEMROOT%\System32\config\RegBack\SAM` | Backup copy of SAM |
-| `%WINDIR%\System32\config\AppEvent.Evt` | Application Log (WinXP) |
-| `%WINDIR%\System32\config\SecEvent.Evt` | Security Log (WinXP) |
-| `%WINDIR%\System32\config\SECURITY` | Security Log |
-| `%WINDIR%\System32\config\APPLICATION` | Application Log |
-| `%ALLUSERSPROFILE%\Start Menu\Programs\Startup\` | Startup Location (WinXP) |
-| `%USERPROFILE%\Appdata\Roaming\Microsoft\Windows\Start Menu\Programs\Startup` | Startup Folder |
-| `%WINDIR%\Panther\` | Commonly used unattend install files |
-| `%WINDIR%\System32\Sysprep` | Commonly used unattend install files |
-| `%WINDIR%\kb*` | Installed patches (WinXP) |
+| Path                                                                          | Description                          |
+| ----------------------------------------------------------------------------- | ------------------------------------ |
+| `%SYSTEMROOT%\System32\drivers\etc\hosts`                                     | DNS entries                          |
+| `%SYSTEMROOT%\System32\drivers\etc\networks`                                  | Network settings                     |
+| `%SYSTEMROOT%\System32\config\SAM`                                            | User & password hashes               |
+| `%SYSTEMROOT%\repair\SAM`                                                     | Backup copy of SAM (WinXP)           |
+| `%SYSTEMROOT%\System32\config\RegBack\SAM`                                    | Backup copy of SAM                   |
+| `%WINDIR%\System32\config\AppEvent.Evt`                                       | Application Log (WinXP)              |
+| `%WINDIR%\System32\config\SecEvent.Evt`                                       | Security Log (WinXP)                 |
+| `%WINDIR%\System32\config\SECURITY`                                           | Security Log                         |
+| `%WINDIR%\System32\config\APPLICATION`                                        | Application Log                      |
+| `%ALLUSERSPROFILE%\Start Menu\Programs\Startup\`                              | Startup Location (WinXP)             |
+| `%USERPROFILE%\Appdata\Roaming\Microsoft\Windows\Start Menu\Programs\Startup` | Startup Folder                       |
+| `%WINDIR%\Panther\`                                                           | Commonly used unattend install files |
+| `%WINDIR%\System32\Sysprep`                                                   | Commonly used unattend install files |
+| `%WINDIR%\kb*`                                                                | Installed patches (WinXP)            |
 
 **Note**: All file paths marked "(WinXP)" are Windows XP only. All others are tested and working with Windows 10+.
 
@@ -177,6 +180,7 @@ $env:MY_VAR = "value"
 List of registry keys accessed during system boot (in load order):
 
 ### Boot-Time Keys
+
 ```
 HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute (WinXP)
 
@@ -252,6 +256,7 @@ reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\MountPoints2\
 ```
 
 ### PowerShell System Information
+
 ```powershell
 # Comprehensive system info
 Get-ComputerInfo
@@ -317,6 +322,7 @@ sc stop <SERVICE_NAME>
 ```
 
 ### PowerShell Process & Service Enumeration
+
 ```powershell
 # Get all processes
 Get-Process
@@ -408,6 +414,7 @@ netsh interface ip set address name="<INTERFACE_NAME>" source=dhcp
 ```
 
 ### PowerShell Network Commands
+
 ```powershell
 # Get network adapters
 Get-NetAdapter
@@ -523,6 +530,7 @@ HKCU\Software\SimonTatham\Putty\Sessions
 ```
 
 ### PowerShell Registry Commands
+
 ```powershell
 # Get registry value
 Get-ItemProperty -Path "HKLM:\Software\Microsoft\Windows NT\CurrentVersion" -Name ProductName
@@ -587,6 +595,7 @@ dir \\<IP_ADDRESS>\c$
 ```
 
 ### PowerShell Remote Commands
+
 ```powershell
 # Enable PowerShell Remoting
 Enable-PSRemoting -Force
@@ -644,6 +653,7 @@ type <FILE_PATH>
 ```
 
 ### PowerShell File Searching
+
 ```powershell
 # Search for files
 Get-ChildItem -Path C:\ -Filter *.pdf -Recurse -ErrorAction SilentlyContinue
@@ -666,21 +676,25 @@ Get-FileHash -Path <FILE_PATH> -Algorithm SHA256
 Three options to enumerate filesystem to file, compress, download, and extract for analysis:
 
 **Option 1: tree.com**
+
 ```powershell
 tree.com /F /A \\<IP_ADDRESS>\<FILE_PATH> > c:\windows\temp\silverlight1.log
 ```
 
 **Option 2: dir /s**
+
 ```powershell
 dir /s /a \\<IP_ADDRESS>\<FILE_PATH> > c:\windows\temp\silverlight1.log
 ```
 
 **Option 3: forfiles** (Does not work with UNC paths)
+
 ```powershell
 forfiles /S /C "cmd /c echo @path" /p <FILE_PATH> > c:\windows\temp\silverlight1.log
 ```
 
 **Compress and extract:**
+
 ```powershell
 # Compress file
 makecab c:\windows\temp\silverlight1.log c:\windows\temp\silverlight_compressed.zip
@@ -744,6 +758,7 @@ sc \\<IP_ADDRESS> qc vss
 ```
 
 **Service Requirements:**
+
 - Must run as LocalSystem
 - Must be stoppable
 - Must be configurable
@@ -812,12 +827,14 @@ Invoke-WmiMethod -ComputerName <COMPUTER_NAME> -Class Win32_Process -Name Create
 ## Security Considerations
 
 **WARNING**: Many of the commands in this reference are powerful system-level operations that should only be used:
+
 - On systems you own or have explicit authorization to access
 - For legitimate system administration purposes
 - For authorized security testing and penetration testing
 - In compliance with organizational policies and legal requirements
 
 **Unauthorized use of these commands may violate:**
+
 - Computer Fraud and Abuse Act (CFAA)
 - Corporate security policies
 - Local and international laws

@@ -1,9 +1,9 @@
 ---
 name: Bug Report
 about: Create a report to help us improve
-title: '[BUG] '
+title: "[BUG] "
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
 ## 🐛 Bug Description
@@ -34,26 +34,31 @@ assignees: ''
 ## 💻 Environment
 
 **Platform Information:**
+
 - OS: <!-- Windows/macOS/Linux -->
 - OS Version: <!-- e.g., Windows 11, macOS 14.0, Ubuntu 22.04 -->
 - Architecture: <!-- x64, arm64 -->
 - Shell: <!-- bash, zsh, powershell, cmd -->
 
 **Subagent CLI:**
+
 - Version: <!-- Run: node cli.js --version -->
 - Installation method: <!-- git clone, npm install, etc. -->
 
 **Node.js:**
+
 - Version: <!-- Run: node --version -->
 - npm Version: <!-- Run: npm --version -->
 
 **Agent Information:**
+
 - Agent used: <!-- devops, cloud, security, data, system, code -->
 - Command: <!-- Full command that triggered the bug -->
 
 ## 📦 Configuration
 
 **config.json settings (if relevant):**
+
 ```json
 {
   // Paste relevant config sections
@@ -61,6 +66,7 @@ assignees: ''
 ```
 
 **.env settings (redact sensitive info):**
+
 ```bash
 # Paste relevant env vars (DO NOT include API keys)
 ```
@@ -81,6 +87,7 @@ assignees: ''
 - [ ] Searched existing issues
 
 **Verification output:**
+
 ```bash
 # Run: npm run verify
 # Paste output here

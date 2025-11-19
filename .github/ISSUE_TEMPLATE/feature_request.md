@@ -1,9 +1,9 @@
 ---
 name: Feature Request
 about: Suggest an idea for this project
-title: '[FEATURE] '
+title: "[FEATURE] "
 labels: enhancement
-assignees: ''
+assignees: ""
 ---
 
 ## 🚀 Feature Request
@@ -15,6 +15,7 @@ assignees: ''
 <!-- What problem does this feature solve? -->
 
 **Is your feature request related to a problem? Please describe.**
+
 <!-- e.g., "I'm always frustrated when..." -->
 
 ## 💡 Proposed Solution
@@ -44,11 +45,13 @@ node cli.js [new-command] "example"
 <!-- How would this improve the user experience? -->
 
 ### Before
+
 ```bash
 # Current workflow
 ```
 
 ### After
+
 ```bash
 # Improved workflow with this feature
 ```
@@ -56,20 +59,23 @@ node cli.js [new-command] "example"
 ## 📋 Feature Details
 
 **Type of Feature:**
+
 - [ ] New agent
 - [ ] New tool integration
 - [ ] CLI enhancement
 - [ ] Documentation improvement
 - [ ] Performance optimization
 - [ ] Security enhancement
-- [ ] Other: ___________
+- [ ] Other: ****\_\_\_****
 
 **Scope:**
+
 - [ ] Small (few hours)
 - [ ] Medium (few days)
 - [ ] Large (week+)
 
 **Priority:**
+
 - [ ] Critical (blocking usage)
 - [ ] High (significant improvement)
 - [ ] Medium (nice to have)
@@ -78,16 +84,19 @@ node cli.js [new-command] "example"
 ## 🛠️ Technical Considerations
 
 **Platform Support:**
+
 - [ ] Windows
 - [ ] macOS
 - [ ] Linux
 - [ ] Cross-platform
 
 **Dependencies:**
+
 - Required tools: <!-- e.g., Docker, kubectl -->
 - Required libraries: <!-- e.g., new npm packages -->
 
 **Compatibility:**
+
 - [ ] Backward compatible
 - [ ] Breaking change (requires migration)
 

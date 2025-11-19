@@ -1,6 +1,7 @@
 # Linux Reference Guide
 
 ## Table of Contents
+
 1. [File System Structure](#file-system-structure)
 2. [Important Files and Directories](#important-files-and-directories)
 3. [User Account Files](#user-account-files)
@@ -17,22 +18,22 @@
 
 ## File System Structure
 
-| Path | Description |
-|---|---|
-| `/` | Anchor and root of the filesystem |
-| `/bin` | User binaries |
-| `/boot` | Boot-up related files |
-| `/dev` | Interface for system devices |
-| `/etc` | System configuration files |
-| `/home` | Base directory for user files |
-| `/lib` | Critical software libraries |
-| `/opt` | Third party software |
-| `/proc` | System and running programs |
-| `/root` | Home directory of root user |
-| `/sbin` | System administrator binaries |
-| `/tmp` | Temporary files |
-| `/usr` | Contains all the system files (less critical files) |
-| `/var` | Variable system files |
+| Path    | Description                                         |
+| ------- | --------------------------------------------------- |
+| `/`     | Anchor and root of the filesystem                   |
+| `/bin`  | User binaries                                       |
+| `/boot` | Boot-up related files                               |
+| `/dev`  | Interface for system devices                        |
+| `/etc`  | System configuration files                          |
+| `/home` | Base directory for user files                       |
+| `/lib`  | Critical software libraries                         |
+| `/opt`  | Third party software                                |
+| `/proc` | System and running programs                         |
+| `/root` | Home directory of root user                         |
+| `/sbin` | System administrator binaries                       |
+| `/tmp`  | Temporary files                                     |
+| `/usr`  | Contains all the system files (less critical files) |
+| `/var`  | Variable system files                               |
 
 ---
 
@@ -40,28 +41,28 @@
 
 ### Critical System Files
 
-| Path | Description |
-|---|---|
-| `/etc/shadow` | User account information and password hashes |
-| `/etc/passwd` | User account information |
-| `/etc/group` | Group names |
-| `/etc/rc.d` | Startup services (rc0.d-rc6.d) |
-| `/etc/init.d` | Contains startup/stop scripts |
-| `/etc/hosts` | Hardcoded hostname and IP combinations |
-| `/etc/hostname` | Full hostname with domain |
-| `/etc/network/interfaces` | Network configuration (Debian/Ubuntu) |
-| `/etc/netplan` | Network configuration (Ubuntu 18.04+) |
-| `/etc/profile` | System environment variables |
-| `/etc/apt/sources.list` | Debian package source |
-| `/etc/resolv.conf` | DNS configuration |
-| `/etc/fstab` | Contains local and network configured mounts and shares |
-| `/home/<USER>/.bash_history` | User Bash history |
-| `/usr/share/wireshark/manuf` | Vendor-MAC lookup (Kali Linux) |
-| `~/.ssh/` | SSH keystore |
-| `/var/log` | System log files (most Linux) |
-| `/var/adm` | System log files (Unix) |
-| `/var/spool/cron` | List cron files |
-| `/var/log/apache2/access.log` | Apache connection log |
+| Path                          | Description                                             |
+| ----------------------------- | ------------------------------------------------------- |
+| `/etc/shadow`                 | User account information and password hashes            |
+| `/etc/passwd`                 | User account information                                |
+| `/etc/group`                  | Group names                                             |
+| `/etc/rc.d`                   | Startup services (rc0.d-rc6.d)                          |
+| `/etc/init.d`                 | Contains startup/stop scripts                           |
+| `/etc/hosts`                  | Hardcoded hostname and IP combinations                  |
+| `/etc/hostname`               | Full hostname with domain                               |
+| `/etc/network/interfaces`     | Network configuration (Debian/Ubuntu)                   |
+| `/etc/netplan`                | Network configuration (Ubuntu 18.04+)                   |
+| `/etc/profile`                | System environment variables                            |
+| `/etc/apt/sources.list`       | Debian package source                                   |
+| `/etc/resolv.conf`            | DNS configuration                                       |
+| `/etc/fstab`                  | Contains local and network configured mounts and shares |
+| `/home/<USER>/.bash_history`  | User Bash history                                       |
+| `/usr/share/wireshark/manuf`  | Vendor-MAC lookup (Kali Linux)                          |
+| `~/.ssh/`                     | SSH keystore                                            |
+| `/var/log`                    | System log files (most Linux)                           |
+| `/var/adm`                    | System log files (Unix)                                 |
+| `/var/spool/cron`             | List cron files                                         |
+| `/var/log/apache2/access.log` | Apache connection log                                   |
 
 ---
 
@@ -75,17 +76,17 @@ root:$6$RqNi$...PbED0:16520:0:99999:7:::
 
 **Format**: `username:password:lastchange:min:max:warn:inactive:expire:reserved`
 
-| Position | Field | Description |
-|---|---|---|
-| 1 | Login name | Username |
-| 2 | Encrypted password | Password hash |
-| 3 | Last password change | Days since epoch (1970-01-01) |
-| 4 | Minimum password age | Days before password can be changed |
-| 5 | Maximum password age | Days before password must be changed |
-| 6 | Password warning period | Days before expiration to warn user |
-| 7 | Password inactivity period | Days after expiration before account is locked |
-| 8 | Account expiration date | Days since epoch when account expires |
-| 9 | Reserved | Reserved for future use |
+| Position | Field                      | Description                                    |
+| -------- | -------------------------- | ---------------------------------------------- |
+| 1        | Login name                 | Username                                       |
+| 2        | Encrypted password         | Password hash                                  |
+| 3        | Last password change       | Days since epoch (1970-01-01)                  |
+| 4        | Minimum password age       | Days before password can be changed            |
+| 5        | Maximum password age       | Days before password must be changed           |
+| 6        | Password warning period    | Days before expiration to warn user            |
+| 7        | Password inactivity period | Days after expiration before account is locked |
+| 8        | Account expiration date    | Days since epoch when account expires          |
+| 9        | Reserved                   | Reserved for future use                        |
 
 **Note**: `/etc/login.defs` contains the shadow configuration.
 
@@ -94,17 +95,19 @@ root:$6$RqNi$...PbED0:16520:0:99999:7:::
 Identified by first characters of hash in /etc/shadow:
 
 | Prefix | Hash Type |
-|---|---|
-| `$1$` | MD5 |
-| `$2a$` | bcrypt |
-| `$2y$` | bcrypt |
-| `$5$` | SHA-256 |
-| `$6$` | SHA-512 |
+| ------ | --------- |
+| `$1$`  | MD5       |
+| `$2a$` | bcrypt    |
+| `$2y$` | bcrypt    |
+| `$5$`  | SHA-256   |
+| `$6$`  | SHA-512   |
 
 **Example**:
+
 ```
 kryptonite:$6$n4wLdmr59pt.......:18912:0:99999:7:::
 ```
+
 The `$6$` indicates SHA-512 hashing.
 
 ### /etc/passwd File Format
@@ -115,15 +118,15 @@ root:x:0:0:Root:/root:/bin/bash
 
 **Format**: `username:password:UID:GID:comment:home:shell`
 
-| Position | Field | Description |
-|---|---|---|
-| 1 | Login name | Username |
-| 2 | Password | `x` = password in shadow file, `*` = user cannot login |
-| 3 | User ID (UID) | User ID (root = 0) |
-| 4 | Primary Group ID (GID) | Primary group ID |
-| 5 | Comment Field | User full name or description |
-| 6 | Home directory | User's home directory |
-| 7 | Default shell | User's default shell |
+| Position | Field                  | Description                                            |
+| -------- | ---------------------- | ------------------------------------------------------ |
+| 1        | Login name             | Username                                               |
+| 2        | Password               | `x` = password in shadow file, `*` = user cannot login |
+| 3        | User ID (UID)          | User ID (root = 0)                                     |
+| 4        | Primary Group ID (GID) | Primary group ID                                       |
+| 5        | Comment Field          | User full name or description                          |
+| 6        | Home directory         | User's home directory                                  |
+| 7        | Default shell          | User's default shell                                   |
 
 ---
 
@@ -887,6 +890,7 @@ sudo nano /etc/systemd/system/<SERVICE_NAME>.service
 ```
 
 **Service file content**:
+
 ```ini
 [Unit]
 Description=My Service description
@@ -1071,17 +1075,20 @@ done
 ## Security Considerations
 
 **WARNING**: Many commands in this reference require root/sudo privileges and should only be used:
+
 - On systems you own or have explicit authorization to access
 - For legitimate system administration purposes
 - For authorized security testing and penetration testing
 - In compliance with organizational policies and legal requirements
 
 **Unauthorized use may violate**:
+
 - Computer Fraud and Abuse Act (CFAA)
 - Corporate security policies
 - Local and international laws
 
 Always ensure proper authorization before:
+
 - Modifying user accounts or passwords
 - Extracting password hashes from /etc/shadow
 - Changing network configurations

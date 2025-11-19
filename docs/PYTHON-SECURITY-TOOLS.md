@@ -1,6 +1,7 @@
 # Python Security and Network Automation Tools
 
 ## Table of Contents
+
 - [Port Scanning](#port-scanning)
 - [Data Encoding](#data-encoding)
 - [Registry Analysis](#registry-analysis)
@@ -37,6 +38,7 @@ for port in range(<START_PORT>, <END_PORT>):
 ```
 
 **Usage Example**:
+
 ```python
 import socket as sk
 
@@ -134,6 +136,7 @@ file2.close()
 ```
 
 **Usage Example**:
+
 ```python
 #!/usr/bin/python
 import base64
@@ -220,6 +223,7 @@ print("\n" + output)
 ```
 
 **Usage**:
+
 ```bash
 python registry_parser.py "48656c6c6f20576f726c64"
 # Output: Hello World
@@ -402,11 +406,13 @@ if __name__ == "__main__":
 **Description**: Create an HTTPS server with self-signed certificate
 
 **Step 1**: Create SSL certificate
+
 ```bash
 openssl req -new -x509 -keyout cert.pem -out cert.pem -days 365 -nodes
 ```
 
 **Step 2**: Create Python HTTPS server
+
 ```python
 # httpserver.py
 import http.server
@@ -426,6 +432,7 @@ with socketserver.TCPServer(server_address, handler) as httpd:
 ```
 
 **Usage**:
+
 ```bash
 python httpserver.py
 # Access via: https://localhost:4443
@@ -1057,6 +1064,7 @@ if __name__ == "__main__":
 ```
 
 **Usage Examples**:
+
 ```bash
 # Scan HTTP servers
 python banner_grabber.py -t 192.168.1.1-10 -p 80 -d 0.5
@@ -1110,6 +1118,7 @@ python banner_grabber.py -t 172.16.0.1-5 -p 8080 -s socket
 - ❌ **Unauthorized Use**: Scanning/testing systems without permission, accessing unauthorized networks, malicious activities
 
 **Always**:
+
 - Obtain written authorization before testing
 - Comply with local laws and regulations
 - Follow responsible disclosure practices

@@ -211,15 +211,20 @@ export class ConfigurationManager {
       },
       tools: {
         bash: {
-          ...DEFAULT_ENTERPRISE_CONFIG.tools.bash,
+          enabled: userConfig.tools?.bash?.enabled ?? DEFAULT_ENTERPRISE_CONFIG.tools.bash!.enabled,
+          ...DEFAULT_ENTERPRISE_CONFIG.tools.bash!,
           ...userConfig.tools?.bash
         },
         codeExecution: {
-          ...DEFAULT_ENTERPRISE_CONFIG.tools.codeExecution,
+          enabled: userConfig.tools?.codeExecution?.enabled ?? DEFAULT_ENTERPRISE_CONFIG.tools.codeExecution!.enabled,
+          containerLifetimeDays: userConfig.tools?.codeExecution?.containerLifetimeDays ?? DEFAULT_ENTERPRISE_CONFIG.tools.codeExecution!.containerLifetimeDays,
+          freeHoursPerDay: userConfig.tools?.codeExecution?.freeHoursPerDay ?? DEFAULT_ENTERPRISE_CONFIG.tools.codeExecution!.freeHoursPerDay,
           ...userConfig.tools?.codeExecution
         },
         textEditor: {
-          ...DEFAULT_ENTERPRISE_CONFIG.tools.textEditor,
+          enabled: userConfig.tools?.textEditor?.enabled ?? DEFAULT_ENTERPRISE_CONFIG.tools.textEditor!.enabled,
+          version: userConfig.tools?.textEditor?.version ?? DEFAULT_ENTERPRISE_CONFIG.tools.textEditor!.version,
+          ...DEFAULT_ENTERPRISE_CONFIG.tools.textEditor!,
           ...userConfig.tools?.textEditor
         }
       },

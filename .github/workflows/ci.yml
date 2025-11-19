@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   lint:
@@ -12,49 +12,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Run ESLint
-      run: npm run lint
-      continue-on-error: true
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true
 
-    - name: Run Prettier check
-      run: npm run format -- --check
-      continue-on-error: true
+      - name: Run Prettier check
+        run: npm run format -- --check
+        continue-on-error: true
 
   build:
     name: Build TypeScript
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build TypeScript
-      run: npm run build
+      - name: Build TypeScript
+        run: npm run build
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-output
-        path: dist/
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: dist/
 
   verify:
     name: Verify Installation
@@ -62,30 +62,30 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: ['14.x', '16.x', '18.x', '20.x']
+        node-version: ["14.x", "16.x", "18.x", "20.x"]
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build TypeScript
-      run: npm run build
+      - name: Build TypeScript
+        run: npm run build
 
-    - name: Create dummy .env
-      run: |
-        echo "ANTHROPIC_API_KEY=test-key-for-ci" > .env
+      - name: Create dummy .env
+        run: |
+          echo "ANTHROPIC_API_KEY=test-key-for-ci" > .env
 
-    - name: Run verification script
-      run: npm run verify
-      continue-on-error: true
+      - name: Run verification script
+        run: npm run verify
+        continue-on-error: true
 
   test-cli:
     name: Test CLI Commands
@@ -95,69 +95,69 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Test CLI info command
-      run: node cli.js info
+      - name: Test CLI info command
+        run: node cli.js info
 
-    - name: Test CLI agents command
-      run: node cli.js agents
+      - name: Test CLI agents command
+        run: node cli.js agents
 
-    - name: Test CLI tools command
-      run: node cli.js tools
+      - name: Test CLI tools command
+        run: node cli.js tools
 
   documentation:
     name: Check Documentation
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Check for broken links
-      uses: gaurav-nelson/github-action-markdown-link-check@v1
-      with:
-        use-quiet-mode: 'yes'
-        config-file: '.github/markdown-link-check-config.json'
-      continue-on-error: true
+      - name: Check for broken links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: "yes"
+          config-file: ".github/markdown-link-check-config.json"
+        continue-on-error: true
 
-    - name: Verify documentation files exist
-      run: |
-        test -f README.md
-        test -f QUICKSTART.md
-        test -f CONTRIBUTING.md
-        test -f .env.example
-        test -f config/config.example.json
+      - name: Verify documentation files exist
+        run: |
+          test -f README.md
+          test -f QUICKSTART.md
+          test -f CONTRIBUTING.md
+          test -f .env.example
+          test -f config/config.example.json
 
   security:
     name: Security Audit
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
 
-    - name: Run npm audit
-      run: npm audit --audit-level=moderate
-      continue-on-error: true
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
 
-    - name: Check for secrets in code
-      uses: trufflesecurity/trufflehog@main
-      with:
-        path: ./
-        base: main
-        head: HEAD
-      continue-on-error: true
+      - name: Check for secrets in code
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: main
+          head: HEAD
+        continue-on-error: true

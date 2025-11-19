@@ -3,6 +3,7 @@
 Thank you for your interest in contributing to the Subagent CLI project! This document provides guidelines and instructions for contributing.
 
 ## Table of Contents
+
 1. [Code of Conduct](#code-of-conduct)
 2. [Getting Started](#getting-started)
 3. [Development Setup](#development-setup)
@@ -22,6 +23,7 @@ Thank you for your interest in contributing to the Subagent CLI project! This do
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 14.0 or higher
 - Git
 - Familiarity with JavaScript/Node.js
@@ -97,13 +99,16 @@ Create a new markdown file in `prompts/` directory:
 # Agent Name - System Prompt
 
 ## Role and Identity
+
 You are a **[Agent Name] Agent**, specialized in...
 
 ## Core Responsibilities
+
 - Responsibility 1
 - Responsibility 2
 
 ## Available Tools and Usage
+
 ...
 ```
 
@@ -129,10 +134,10 @@ In `cli.js`, add a new command:
 
 ```javascript
 program
-  .command('newagent <task>')
-  .description('Execute new agent task')
+  .command("newagent <task>")
+  .description("Execute new agent task")
   .action(async (task) => {
-    await executeAgent('newagent', task);
+    await executeAgent("newagent", task);
   });
 ```
 
@@ -155,10 +160,7 @@ Add the tool to `tools/registry.json`:
   "platforms": ["windows", "macos", "linux"],
   "agents": ["agent1", "agent2"],
   "versionCommand": "--version",
-  "commonCommands": [
-    "toolname command1",
-    "toolname command2"
-  ]
+  "commonCommands": ["toolname command1", "toolname command2"]
 }
 ```
 
@@ -239,6 +241,7 @@ git commit -m "fix: resolve issue with Y"
 ```
 
 **Commit Message Format**:
+
 - `feat:` New feature
 - `fix:` Bug fix
 - `docs:` Documentation changes

@@ -1,6 +1,7 @@
 # macOS Reference Guide
 
 ## Table of Contents
+
 1. [macOS Versions](#macos-versions)
 2. [File System Structure](#file-system-structure)
 3. [System Enumeration](#system-enumeration)
@@ -17,26 +18,26 @@
 
 ### Version History
 
-| ID | VERSION | DATE RELEASED |
-|---|---|---|
-| 10.0.4 | Mac OS X Cheetah | 2001-03-24 |
-| 10.1.5 | Mac OS X Puma | 2001-09-25 |
-| 10.2.8 | Mac OS X Jaguar | 2002-08-23 |
-| 10.3.9 | Mac OS X Panther | 2003-10-24 |
-| 10.4.11 | Mac OS X Tiger | 2005-04-29 |
-| 10.5.8 | Mac OS X Leopard | 2007-10-26 |
-| 10.6.8 | Mac OS X Snow Leopard | 2009-08-28 |
-| 10.7.5 | OS X Lion | 2011-07-20 |
-| 10.8.5 | OS X Mountain Lion | 2012-07-25 |
-| 10.9.5 | OS X Mavericks | 2013-10-22 |
-| 10.10.5 | OS X Yosemite | 2014-10-16 |
-| 10.11.6 | OS X El Capitan | 2015-09-30 |
-| 10.12.6 | macOS Sierra | 2016-09-20 |
-| 10.13.6 | macOS High Sierra | 2017-09-25 |
-| 10.14.6 | macOS Mojave | 2018-09-24 |
-| 10.15.7 | macOS Catalina | 2019-10-07 |
-| 11.6.7 | macOS Big Sur | 2020-11-12 |
-| 12.4 | macOS Monterey | 2021-10-25 |
+| ID      | VERSION               | DATE RELEASED |
+| ------- | --------------------- | ------------- |
+| 10.0.4  | Mac OS X Cheetah      | 2001-03-24    |
+| 10.1.5  | Mac OS X Puma         | 2001-09-25    |
+| 10.2.8  | Mac OS X Jaguar       | 2002-08-23    |
+| 10.3.9  | Mac OS X Panther      | 2003-10-24    |
+| 10.4.11 | Mac OS X Tiger        | 2005-04-29    |
+| 10.5.8  | Mac OS X Leopard      | 2007-10-26    |
+| 10.6.8  | Mac OS X Snow Leopard | 2009-08-28    |
+| 10.7.5  | OS X Lion             | 2011-07-20    |
+| 10.8.5  | OS X Mountain Lion    | 2012-07-25    |
+| 10.9.5  | OS X Mavericks        | 2013-10-22    |
+| 10.10.5 | OS X Yosemite         | 2014-10-16    |
+| 10.11.6 | OS X El Capitan       | 2015-09-30    |
+| 10.12.6 | macOS Sierra          | 2016-09-20    |
+| 10.13.6 | macOS High Sierra     | 2017-09-25    |
+| 10.14.6 | macOS Mojave          | 2018-09-24    |
+| 10.15.7 | macOS Catalina        | 2019-10-07    |
+| 11.6.7  | macOS Big Sur         | 2020-11-12    |
+| 12.4    | macOS Monterey        | 2021-10-25    |
 
 **Note**: macOS Ventura (13.x) and Sonoma (14.x) released after 2022.
 
@@ -44,24 +45,24 @@
 
 ## File System Structure
 
-| Path | Description |
-|---|---|
-| `/Applications` | Contains applications (Mail, Calendar, Safari, etc.) |
-| `/bin` | User binaries |
-| `/dev` | Interface for system devices |
-| `/cores` | Hidden binary files containing pieces of computer memory (for debugging) |
-| `/etc` | System configuration files |
-| `/Users` | Base directory for user files |
-| `/Library` | Critical software libraries |
-| `/home` | Not used for anything |
-| `/private` | Stores essential system files and caches |
-| `/opt` | Third party software |
-| `/sbin` | System administrator binaries |
-| `/System` | Contains operating system files |
-| `/tmp` | Temporary files |
-| `/usr` | Less critical files |
-| `/Volumes` | Shows mounted volumes |
-| `/var` | Variable system files |
+| Path            | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| `/Applications` | Contains applications (Mail, Calendar, Safari, etc.)                     |
+| `/bin`          | User binaries                                                            |
+| `/dev`          | Interface for system devices                                             |
+| `/cores`        | Hidden binary files containing pieces of computer memory (for debugging) |
+| `/etc`          | System configuration files                                               |
+| `/Users`        | Base directory for user files                                            |
+| `/Library`      | Critical software libraries                                              |
+| `/home`         | Not used for anything                                                    |
+| `/private`      | Stores essential system files and caches                                 |
+| `/opt`          | Third party software                                                     |
+| `/sbin`         | System administrator binaries                                            |
+| `/System`       | Contains operating system files                                          |
+| `/tmp`          | Temporary files                                                          |
+| `/usr`          | Less critical files                                                      |
+| `/Volumes`      | Shows mounted volumes                                                    |
+| `/var`          | Variable system files                                                    |
 
 ### Important Directories
 
@@ -383,13 +384,13 @@ sudo dscl . -delete /Groups/<GROUPNAME>
 
 ### Common Groups
 
-| Group | Purpose |
-|---|---|
-| `admin` | Administrator privileges |
-| `staff` | Standard users |
-| `wheel` | Root access via sudo |
-| `everyone` | All users |
-| `guest` | Guest account access |
+| Group      | Purpose                  |
+| ---------- | ------------------------ |
+| `admin`    | Administrator privileges |
+| `staff`    | Standard users           |
+| `wheel`    | Root access via sudo     |
+| `everyone` | All users                |
+| `guest`    | Guest account access     |
 
 ---
 
@@ -782,17 +783,20 @@ crontab -r
 ## Security Considerations
 
 **WARNING**: Many commands in this reference require administrative privileges and should only be used:
+
 - On systems you own or have explicit authorization to access
 - For legitimate system administration purposes
 - For authorized security testing
 - In compliance with organizational policies
 
 **Unauthorized use may violate**:
+
 - Computer Fraud and Abuse Act (CFAA)
 - Corporate security policies
 - Local and international laws
 
 Always ensure proper authorization before using administrative commands, especially those involving:
+
 - User account manipulation
 - Password hash extraction
 - Network configuration changes
