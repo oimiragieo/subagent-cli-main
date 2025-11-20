@@ -165,15 +165,19 @@
 
 | Directory | Contents |
 |-----------|----------|
-| [lib/](lib/) | Core library code |
-| [lib/agents/](lib/agents/) | Agent implementations |
-| [lib/tools/](lib/tools/) | Tool implementations |
-| [lib/security/](lib/security/) | Security layer |
-| [lib/streaming/](lib/streaming/) | Streaming support |
+| [lib/](lib/) | Core TypeScript/JavaScript library |
+| [lib/agents/](lib/agents/) | Agent implementations (SubagentOrchestrator) |
+| [lib/tools/](lib/tools/) | Tool implementations (bash, code execution, text editor) |
+| [lib/security/](lib/security/) | Security layer and validation |
+| [lib/streaming/](lib/streaming/) | Claude streaming support |
 | [lib/tracking/](lib/tracking/) | Cost and todo tracking |
-| [prompts/](prompts/) | Agent system prompts |
+| [lib/config/](lib/config/) | Enterprise configuration |
+| [lib/types/](lib/types/) | TypeScript type definitions |
+| [lib/prompts/](lib/prompts/) | Prompt templates |
+| [prompts/](prompts/) | Agent system prompts (markdown) |
 | [examples/](examples/) | Usage examples |
 | [scripts/](scripts/) | Utility scripts |
+| [docs/](docs/) | Documentation and reference guides |
 
 ### Example Files
 
@@ -192,8 +196,10 @@
 
 | Document | Purpose |
 |----------|---------|
-| [AUDIT-FINDINGS.md](AUDIT-FINDINGS.md) | Deep dive audit findings (20 issues) |
-| [IMPROVEMENTS-SUMMARY.md](IMPROVEMENTS-SUMMARY.md) | Documentation of all improvements made |
+| [docs/AUDIT-FINDINGS.md](docs/AUDIT-FINDINGS.md) | Deep dive audit findings (20 issues) |
+| [docs/IMPROVEMENTS-SUMMARY.md](docs/IMPROVEMENTS-SUMMARY.md) | Documentation of all improvements made |
+| [docs/CODE-QUALITY-REPORT.md](docs/CODE-QUALITY-REPORT.md) | Code quality analysis and recommendations |
+| [docs/FINAL-REVIEW-SUMMARY.md](docs/FINAL-REVIEW-SUMMARY.md) | Complete review summary and metrics |
 
 ---
 
